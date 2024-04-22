@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mod_game/bindings/general_bindings.dart';
+import 'package:mod_game/feature/home/views/home.dart';
 import 'package:mod_game/utils/helper/navigation.dart';
 import 'package:get/get.dart';
 
@@ -29,6 +30,7 @@ class App extends StatelessWidget {
           ),
           initialBinding: GeneralBindings(),
           navigatorKey: Navigation.navigatorKey,
+          home: const Home(),
         );
       },
     );

@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.ch3eku.mod_game">
+    package="com.addonformelo.mo.down">
    <application
         android:label="Melon Mods"
         android:name="${applicationName}"

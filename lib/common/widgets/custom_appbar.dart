@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:mod_game/utils/constants/icons.dart';
 
 import '../../utils/constants/colors.dart';
 import '../../utils/constants/sizes.dart';
@@ -23,7 +24,7 @@ class CustomAppBar extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           SvgPicture.asset(
-            'assets/icons/menu_icon.svg',
+            XIcon.menuIcon,
             height: 24.h,
             width: 24.h,
           ),
@@ -44,13 +45,13 @@ class CustomAppBar extends StatelessWidget {
           Row(
             children: [
               SvgPicture.asset(
-                'assets/icons/wishlist_icon.svg',
+                XIcon.wishlistIcon,
                 height: 24.h,
                 width: 24.h,
               ),
               Gap(XSize.spaceBtwItems.w),
               SvgPicture.asset(
-                'assets/icons/prize_icon.svg',
+                XIcon.prizeIcon,
                 height: 24.h,
                 width: 24.h,
               ),

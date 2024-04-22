@@ -9,8 +9,9 @@ class XColor {
 
   // App specific colors
   static const Color scaffoldLigthBackgroundColor = Color(0xFFFFFFFF);
-  static const Color scaffoldDarkBackgroundColor = Color(0xFF232323);
-  static Color primaryColor = Colors.purple;
+  static const Color scaffoldDarkBackgroundColor = Color(0xFF262626);
+  static const Color primaryColor = Color(0xFF2AAB2F);
+  static const Color secondayColor = Color(0xFFFFFF00);
 
   // Text colors
   static const Color lightTextColor = Color(0xFFFFFFFF);
@@ -23,7 +24,7 @@ class XColor {
   static const Color info = Color(0xFF1976D2);
 
 // Neutral Shades
-  static const Color black = Color(0xFF232323);
+  static const Color black = Color(0xFF262626);
   static const Color darkerGrey = Color(0xFF4F4F4F);
   static const Color darkGrey = Color(0xFF939393);
   static const Color grey = Color(0xFFE0E0E0);

@@ -9,16 +9,17 @@ class XLoader {
 
   static show() {
     Get.dialog(
-        Center(
-          child: Container(
-            color: Colors.transparent,
-            width: 150.h,
-            height: 150.h,
-            child: Image.asset(XImage.loader),
-          ),
+      Center(
+        child: Container(
+          color: Colors.transparent,
+          width: 150.h,
+          height: 150.h,
+          child: Image.asset(XImage.loader),
         ),
-        barrierDismissible: false,
-        barrierColor: XColor.black.withOpacity(.75));
+      ),
+      barrierDismissible: false,
+      barrierColor: XColor.black.withOpacity(.75),
+    );
   }
 
   static hide() {

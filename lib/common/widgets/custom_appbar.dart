@@ -23,11 +23,7 @@ class CustomAppBar extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          SvgPicture.asset(
-            XIcon.menuIcon,
-            height: 24.h,
-            width: 24.h,
-          ),
+          SvgPicture.asset(XIcon.menuIcon, height: 24.h, width: 24.h),
           const Spacer(flex: 5),
           SizedBox(
             width: 106.w,
@@ -44,17 +40,9 @@ class CustomAppBar extends StatelessWidget {
           const Spacer(flex: 2),
           Row(
             children: [
-              SvgPicture.asset(
-                XIcon.wishlistIcon,
-                height: 24.h,
-                width: 24.h,
-              ),
+              SvgPicture.asset(XIcon.wishlistIcon, height: 24.h, width: 24.h),
               Gap(XSize.spaceBtwItems.w),
-              SvgPicture.asset(
-                XIcon.prizeIcon,
-                height: 24.h,
-                width: 24.h,
-              ),
+              SvgPicture.asset(XIcon.prizeIcon, height: 24.h, width: 24.h),
             ],
           ),
         ],

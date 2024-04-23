@@ -29,17 +29,14 @@ class SlidingBanner extends StatelessWidget {
                 height: 145.h,
                 margin: EdgeInsets.symmetric(horizontal: XSize.defaultSpace.w),
                 padding: EdgeInsets.symmetric(
-                  horizontal: (XSize.spaceBtwItems / 2).w,
-                  vertical: (XSize.spaceBtwItems / 2).h,
-                ),
+                    horizontal: (XSize.spaceBtwItems / 2).w,
+                    vertical: (XSize.spaceBtwItems / 2).h),
                 decoration: BoxDecoration(
                   border: Border.all(
                       color: XColor.primaryColor.withOpacity(.5), width: 2),
                 ),
-                child: Image.asset(
-                  'assets/images/banner.png',
-                  fit: BoxFit.cover,
-                ),
+                child:
+                    Image.asset('assets/images/banner.png', fit: BoxFit.cover),
               ),
               Positioned(
                 left: (XSize.defaultSpace * 2).w,
@@ -56,10 +53,8 @@ class SlidingBanner extends StatelessWidget {
                       decoration: BoxDecoration(
                         color: XColor.white.withOpacity(.05),
                         border: const Border(
-                          left: BorderSide(
-                            color: XColor.secondayColor,
-                            width: 2,
-                          ),
+                          left:
+                              BorderSide(color: XColor.secondayColor, width: 2),
                         ),
                       ),
                       child: Column(
@@ -69,9 +64,7 @@ class SlidingBanner extends StatelessWidget {
                           Text(
                             'Ultimate One Piece'.toUpperCase(),
                             style: GoogleFonts.quantico(
-                              fontSize: 12.sp,
-                              fontWeight: FontWeight.w700,
-                            ),
+                                fontSize: 12.sp, fontWeight: FontWeight.w700),
                           ),
                           Text(
                             '2956 Download'.toUpperCase(),

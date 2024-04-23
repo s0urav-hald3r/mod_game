@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:mod_game/common/styles/left_padding.dart';
 
 import '../../../../utils/constants/colors.dart';
-import '../../../../utils/constants/sizes.dart';
 
 class CategoryTitle extends StatelessWidget {
   final String title;
@@ -11,8 +11,7 @@ class CategoryTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.only(left: XSize.defaultSpace.w),
+    return LeftPadding(
       child: Row(
         children: [
           Text(

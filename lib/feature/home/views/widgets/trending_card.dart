@@ -94,6 +94,17 @@ class TrendingCard extends StatelessWidget {
             ),
           ),
         ),
+        Positioned(
+          right: XSize.defaultSpace.w,
+          child: IconButton(
+            onPressed: () {},
+            icon: Icon(
+              Icons.favorite_rounded,
+              color: Colors.white60,
+              size: 26.sp,
+            ),
+          ),
+        )
       ],
     );
   }

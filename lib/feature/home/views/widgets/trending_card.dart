@@ -62,7 +62,7 @@ class TrendingCard extends StatelessWidget {
         ),
         Positioned(
           right: (XSize.defaultSpace * 2).w,
-          bottom: 50.h - 17.5.h,
+          bottom: 50.h,
           child: CustomPaint(
             painter: CornerPainter(
                 color: XColor.deepYellow,

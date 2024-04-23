@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 import '../../../../common/styles/corner_clipper.dart';
 import '../../../../common/styles/corner_painter.dart';
+import '../../../../common/widgets/game_name_download.dart';
 import '../../../../utils/constants/colors.dart';
 import '../../../../utils/constants/sizes.dart';
 
@@ -33,30 +34,13 @@ class TrendingCard extends StatelessWidget {
                 width: double.infinity,
                 height: 130.h,
               ),
-              Expanded(
-                child: Padding(
-                  padding: EdgeInsets.only(left: XSize.spaceBtwItems.w),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        'Ultimate One Piece'.toUpperCase(),
-                        style: GoogleFonts.quantico(
-                            fontSize: 12.sp, fontWeight: FontWeight.w700),
-                      ),
-                      Text(
-                        '2956 Download'.toUpperCase(),
-                        style: GoogleFonts.quantico(
-                          fontSize: 8.sp,
-                          fontWeight: FontWeight.w400,
-                          color: XColor.secondayColor,
-                        ),
-                      )
-                    ],
-                  ),
-                ),
+              const Spacer(),
+              const GameNameDownload(
+                gameName: 'Ultimate One Piece',
+                gameDownload: '2956 Download',
+                borderColor: XColor.scaffoldDarkBackgroundColor,
               ),
+              const Spacer(),
             ],
           ),
         ),

@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:mod_game/common/styles/right_padding.dart';
 import 'package:mod_game/utils/constants/sizes.dart';
 
 import '../../../../common/styles/corner_clipper.dart';
@@ -22,8 +23,7 @@ class CategoryBox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.only(right: XSize.defaultSpace.w),
+    return RightPadding(
       child: Column(
         children: [
           CustomPaint(

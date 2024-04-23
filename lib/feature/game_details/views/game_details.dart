@@ -12,6 +12,7 @@ import '../../../common/styles/corner_painter.dart';
 import '../../../common/widgets/custom_appbar_back.dart';
 import '../../../common/widgets/game_name_download.dart';
 import '../../../utils/constants/colors.dart';
+import 'widgets/recommended_card.dart';
 
 class GameDetails extends StatelessWidget {
   const GameDetails({super.key});
@@ -164,6 +165,24 @@ class GameDetails extends StatelessWidget {
 
             // Top recommended
             const CategoryTitle(title: '👑 Top Recommended'),
+            Gap(XSize.defaultSpace.h),
+
+            // List of recommended
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              padding: EdgeInsets.only(left: XSize.defaultSpace.w),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  ...[
+                    const RecommendedCard(),
+                    const RecommendedCard(),
+                    const RecommendedCard(),
+                  ],
+                  Gap(XSize.spaceBtwItems.w),
+                ],
+              ),
+            ),
             Gap(XSize.defaultSpace.h),
           ],
         ),

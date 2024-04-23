@@ -35,8 +35,8 @@ class SlidingBanner extends StatelessWidget {
                   border: Border.all(
                       color: XColor.primaryColor.withOpacity(.5), width: 2),
                 ),
-                child:
-                    Image.asset('assets/images/banner.png', fit: BoxFit.cover),
+                child: Image.asset('assets/images/banner_1.png',
+                    fit: BoxFit.cover),
               ),
               Positioned(
                 left: (XSize.defaultSpace * 2).w,

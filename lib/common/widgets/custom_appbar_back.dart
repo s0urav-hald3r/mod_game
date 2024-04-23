@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mod_game/utils/constants/icons.dart';
+import 'package:mod_game/utils/helper/navigation.dart';
 
 import '../../utils/constants/colors.dart';
 import '../../utils/constants/sizes.dart';
@@ -19,10 +20,14 @@ class CustomAppBarBack extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
+      automaticallyImplyLeading: false,
       // Leading
       leadingWidth: 24.w + XSize.defaultSpace.w,
-      leading: LeftPadding(
-        child: SvgPicture.asset(XIcon.backIcon, height: 24.w, width: 24.w),
+      leading: InkWell(
+        onTap: () => Navigation.pop(),
+        child: LeftPadding(
+          child: SvgPicture.asset(XIcon.backIcon, height: 24.w, width: 24.w),
+        ),
       ),
 
       // Title

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:mod_game/feature/game_details/views/game_details.dart';
+import 'package:mod_game/utils/helper/navigation.dart';
 
 import '../../../../common/styles/corner_clipper.dart';
 import '../../../../common/styles/corner_painter.dart';
@@ -47,38 +49,41 @@ class TrendingCard extends StatelessWidget {
         Positioned(
           right: (XSize.defaultSpace * 2).w,
           bottom: 50.h,
-          child: CustomPaint(
-            painter: CornerPainter(
-                color: XColor.deepYellow,
-                opacity: .5,
-                stroke: 1.sp,
-                startPoint: 15),
-            child: ClipPath(
-              clipper: CornerClipper(startPoint: 15),
-              child: SizedBox(
-                width: 100.w,
-                height: 35.h,
-                child: Center(
-                  child: CustomPaint(
-                    painter: CornerPainter(
-                        color: XColor.darkerGrey,
-                        opacity: 1,
-                        stroke: 2.sp,
-                        startPoint: 15),
-                    child: ClipPath(
-                      clipper: CornerClipper(startPoint: 15),
-                      child: Container(
-                        width: 90.w,
-                        height: 27.h,
-                        color: XColor.deepYellow,
-                        child: Center(
-                          child: Text(
-                            'Details'.toUpperCase(),
-                            style: GoogleFonts.quantico(
-                                fontWeight: FontWeight.w700,
-                                fontSize: 10.sp,
-                                letterSpacing: 2.sp,
-                                color: XColor.black),
+          child: InkWell(
+            onTap: () => Navigation.push(const GameDetails()),
+            child: CustomPaint(
+              painter: CornerPainter(
+                  color: XColor.deepYellow,
+                  opacity: .5,
+                  stroke: 1.sp,
+                  startPoint: 15),
+              child: ClipPath(
+                clipper: CornerClipper(startPoint: 15),
+                child: SizedBox(
+                  width: 100.w,
+                  height: 35.h,
+                  child: Center(
+                    child: CustomPaint(
+                      painter: CornerPainter(
+                          color: XColor.darkerGrey,
+                          opacity: 1,
+                          stroke: 2.sp,
+                          startPoint: 15),
+                      child: ClipPath(
+                        clipper: CornerClipper(startPoint: 15),
+                        child: Container(
+                          width: 90.w,
+                          height: 27.h,
+                          color: XColor.deepYellow,
+                          child: Center(
+                            child: Text(
+                              'Details'.toUpperCase(),
+                              style: GoogleFonts.quantico(
+                                  fontWeight: FontWeight.w700,
+                                  fontSize: 10.sp,
+                                  letterSpacing: 2.sp,
+                                  color: XColor.black),
+                            ),
                           ),
                         ),
                       ),

@@ -6,40 +6,43 @@ import 'package:mod_game/utils/constants/icons.dart';
 
 import '../../utils/constants/colors.dart';
 import '../../utils/constants/sizes.dart';
+import '../styles/left_padding.dart';
+import '../styles/right_padding.dart';
 
-class CustomAppBarBack extends StatelessWidget {
+class CustomAppBarBack extends StatelessWidget implements PreferredSizeWidget {
   final String title;
   const CustomAppBarBack({super.key, required this.title});
 
   @override
+  Size get preferredSize => const Size.fromHeight(kToolbarHeight);
+
+  @override
   Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      height: 90.h,
-      padding: EdgeInsets.fromLTRB(
-          XSize.defaultSpace.w, XSize.statusBarHeigth, XSize.defaultSpace.w, 0),
-      color: XColor.primaryColor,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          SvgPicture.asset(XIcon.backIcon, height: 24.h, width: 24.h),
-          const Spacer(flex: 4),
-          SizedBox(
-            width: 167.w,
-            height: 21.h,
-            child: Text(
-              title,
-              style: GoogleFonts.piedra(
-                fontSize: 16.sp,
-                fontWeight: FontWeight.w400,
-                color: XColor.secondayColor,
-              ),
-            ),
-          ),
-          const Spacer(flex: 2),
-          SvgPicture.asset(XIcon.wishlistIcon, height: 24.h, width: 24.h),
-        ],
+    return AppBar(
+      // Leading
+      leadingWidth: 24.w + XSize.defaultSpace.w,
+      leading: LeftPadding(
+        child: SvgPicture.asset(XIcon.backIcon, height: 24.w, width: 24.w),
       ),
+
+      // Title
+      centerTitle: true,
+      title: Text(
+        title.toUpperCase(),
+        style: GoogleFonts.piedra(
+          fontSize: 16.sp,
+          fontWeight: FontWeight.w400,
+          color: XColor.secondayColor,
+        ),
+      ),
+
+      // Tailing
+      actions: [
+        RightPadding(
+          child:
+              SvgPicture.asset(XIcon.wishlistIcon, height: 24.w, width: 24.w),
+        ),
+      ],
     );
   }
 }

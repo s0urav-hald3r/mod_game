@@ -25,6 +25,10 @@ class App extends StatelessWidget {
           darkTheme: ThemeData(
             useMaterial3: true,
             brightness: Brightness.dark,
+            appBarTheme: const AppBarTheme(
+              backgroundColor: XColor.primaryColor,
+              elevation: 5,
+            ),
             primaryColor: XColor.primaryColor,
             scaffoldBackgroundColor: XColor.scaffoldDarkBackgroundColor,
           ),

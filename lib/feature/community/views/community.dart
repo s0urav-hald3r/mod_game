@@ -20,7 +20,7 @@ class CommunityView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: const CustomAppBar(title: 'Melon Mods'),
+        appBar: const CustomAppBar(title: 'Community'),
         body: SingleChildScrollView(
           child: Column(
             children: [

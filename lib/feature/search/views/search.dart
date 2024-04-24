@@ -71,6 +71,7 @@ class SearchView extends StatelessWidget {
 
             const TrendingCard(),
             const TrendingCard(),
+            const TrendingCard(),
           ],
         ),
       ),

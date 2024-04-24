@@ -34,7 +34,7 @@ class App extends StatelessWidget {
           ),
           initialBinding: GeneralBindings(),
           navigatorKey: Navigation.navigatorKey,
-          home: const Home(),
+          home: const HomeView(),
         );
       },
     );

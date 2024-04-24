@@ -12,4 +12,6 @@ class XIcon {
   static const firearmsIcon = 'assets/icons/firearms_icon.svg';
   static const throwingIcon = 'assets/icons/throwing_icon.svg';
   static const energyIcon = 'assets/icons/energy_icon.svg';
+
+  static const searchIcon = 'assets/icons/search_icon.svg';
 }

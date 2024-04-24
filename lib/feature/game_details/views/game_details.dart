@@ -14,8 +14,8 @@ import '../../../common/widgets/game_name_download.dart';
 import '../../../utils/constants/colors.dart';
 import 'widgets/recommended_card.dart';
 
-class GameDetails extends StatelessWidget {
-  const GameDetails({super.key});
+class GameDetailsView extends StatelessWidget {
+  const GameDetailsView({super.key});
 
   @override
   Widget build(BuildContext context) {

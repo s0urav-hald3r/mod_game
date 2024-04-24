@@ -51,7 +51,7 @@ class TrendingCard extends StatelessWidget {
           right: (XSize.defaultSpace * 2).w,
           bottom: 50.h,
           child: InkWell(
-            onTap: () => Navigation.push(const GameDetails()),
+            onTap: () => Navigation.push(const GameDetailsView()),
             child: CustomPaint(
               painter: CornerPainter(
                   color: XColor.deepYellow,

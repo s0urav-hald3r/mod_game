@@ -11,8 +11,8 @@ import 'widgets/sliding_banner.dart';
 import 'widgets/sliding_banner_indecator.dart';
 import 'widgets/trending_card.dart';
 
-class Home extends StatelessWidget {
-  const Home({super.key});
+class HomeView extends StatelessWidget {
+  const HomeView({super.key});
 
   @override
   Widget build(BuildContext context) {

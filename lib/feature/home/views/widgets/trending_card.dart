@@ -25,7 +25,8 @@ class TrendingCard extends StatelessWidget {
           margin: EdgeInsets.fromLTRB(XSize.defaultSpace.w, 0,
               XSize.defaultSpace.w, XSize.defaultSpace.h),
           decoration: BoxDecoration(
-            border: Border.all(color: XColor.secondayColor.withOpacity(.5)),
+            color: XColor.darkerGrey,
+            border: Border.all(color: XColor.secondayColor.withOpacity(.3)),
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,

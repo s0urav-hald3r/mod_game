@@ -29,8 +29,8 @@ class CategoryBox extends StatelessWidget {
           CustomPaint(
             painter: CornerPainter(
                 color: XColor.primaryColor,
-                opacity: .25,
-                stroke: 2.sp,
+                opacity: .3,
+                stroke: 1.sp,
                 startPoint: 15),
             child: ClipPath(
               clipper: CornerClipper(startPoint: 15),
@@ -43,7 +43,7 @@ class CategoryBox extends StatelessWidget {
                         color:
                             isSelect ? XColor.secondayColor : XColor.darkerGrey,
                         opacity: 1,
-                        stroke: 1.sp,
+                        stroke: 0.75.sp,
                         startPoint: 15),
                     child: ClipPath(
                       clipper: CornerClipper(startPoint: 15),

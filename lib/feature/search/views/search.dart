@@ -40,6 +40,8 @@ class SearchView extends StatelessWidget {
                       style: TextStyle(
                         color: XColor.white,
                         fontSize: 12.sp,
+                        fontWeight: FontWeight.w400,
+                        letterSpacing: 2.sp,
                         height: 0.0,
                       ),
                       cursorColor: XColor.white,
@@ -54,7 +56,7 @@ class SearchView extends StatelessWidget {
                             fontSize: 12.sp,
                             color: XColor.white,
                             fontWeight: FontWeight.w400,
-                            letterSpacing: 2.5.sp),
+                            letterSpacing: 2.sp),
                         border: InputBorder.none,
                         enabledBorder: InputBorder.none,
                         focusedBorder: InputBorder.none,

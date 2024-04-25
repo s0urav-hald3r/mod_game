@@ -114,8 +114,8 @@ class NavBarItem extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             NavigationBarController.instance.screenIndex == index
-                ? SvgPicture.asset(selectedIcon, height: 24.w, width: 24.w)
-                : SvgPicture.asset(icon, height: 24.w, width: 24.w),
+                ? SvgPicture.asset(selectedIcon, height: 24.sp, width: 24.sp)
+                : SvgPicture.asset(icon, height: 24.sp, width: 24.sp),
             Gap((XSize.spaceBtwItems / 2).h),
             Text(
               title,

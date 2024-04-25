@@ -39,7 +39,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       // Leading
       leadingWidth: 24.w + XSize.defaultSpace.w,
       leading: LeftPadding(
-        child: SvgPicture.asset(XIcon.menuIcon, height: 24.w, width: 24.w),
+        child: SvgPicture.asset(XIcon.menuIcon, height: 24.sp, width: 24.sp),
       ),
 
       // Title
@@ -59,10 +59,10 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       actions: [
         RightPadding(
           child:
-              SvgPicture.asset(XIcon.wishlistIcon, height: 24.w, width: 24.w),
+              SvgPicture.asset(XIcon.wishlistIcon, height: 24.sp, width: 24.sp),
         ),
         RightPadding(
-          child: SvgPicture.asset(XIcon.prizeIcon, height: 24.w, width: 24.w),
+          child: SvgPicture.asset(XIcon.prizeIcon, height: 24.sp, width: 24.sp),
         ),
       ],
     );

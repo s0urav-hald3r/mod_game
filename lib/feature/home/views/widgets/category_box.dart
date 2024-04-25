@@ -48,8 +48,8 @@ class CategoryBox extends StatelessWidget {
                         height: 60.sp,
                         color: XColor.darkerGrey,
                         child: Center(
-                          child:
-                              SvgPicture.asset(icon, height: 24.h, width: 24.h),
+                          child: SvgPicture.asset(icon,
+                              height: 24.sp, width: 24.sp),
                         ),
                       ),
                     ),

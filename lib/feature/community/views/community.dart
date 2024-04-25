@@ -32,7 +32,8 @@ class CommunityView extends StatelessWidget {
               child: Row(
                 children: [
                   Gap(XSize.spaceBtwItems.w),
-                  SvgPicture.asset(XIcon.searchIcon, height: 24.w, width: 24.w),
+                  SvgPicture.asset(XIcon.searchIcon,
+                      height: 24.sp, width: 24.sp),
                   Gap(XSize.spaceBtwItems.w),
                   Expanded(
                     child: TextFormField(

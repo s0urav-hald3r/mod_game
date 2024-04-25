@@ -26,7 +26,7 @@ class CustomAppBarBack extends StatelessWidget implements PreferredSizeWidget {
       leading: InkWell(
         onTap: () => Navigation.pop(),
         child: LeftPadding(
-          child: SvgPicture.asset(XIcon.backIcon, height: 24.w, width: 24.w),
+          child: SvgPicture.asset(XIcon.backIcon, height: 24.sp, width: 24.sp),
         ),
       ),
 
@@ -45,7 +45,7 @@ class CustomAppBarBack extends StatelessWidget implements PreferredSizeWidget {
       actions: [
         RightPadding(
           child:
-              SvgPicture.asset(XIcon.wishlistIcon, height: 24.w, width: 24.w),
+              SvgPicture.asset(XIcon.wishlistIcon, height: 24.sp, width: 24.sp),
         ),
       ],
     );

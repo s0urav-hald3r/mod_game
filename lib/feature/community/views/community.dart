@@ -100,6 +100,9 @@ class CommunityView extends StatelessWidget {
 
               const TrendingCard(),
               const TrendingCard(),
+
+              //Bottom Navigation Bar Heigth
+              Gap(XSize.customBottomBarHeigth.h)
             ],
           ),
         ));

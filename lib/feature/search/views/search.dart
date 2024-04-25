@@ -72,6 +72,9 @@ class SearchView extends StatelessWidget {
             const TrendingCard(),
             const TrendingCard(),
             const TrendingCard(),
+
+            //Bottom Navigation Bar Heigth
+            Gap(XSize.customBottomBarHeigth.h)
           ],
         ),
       ),

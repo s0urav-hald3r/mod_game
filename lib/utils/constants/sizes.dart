@@ -22,4 +22,7 @@ class XSize {
 
   // Bottom Bar height
   static double bottomBarHeigth = MediaQuery.of(Get.context!).padding.bottom;
+
+  // Bottom Navigation Bar height
+  static double customBottomBarHeigth = 70;
 }

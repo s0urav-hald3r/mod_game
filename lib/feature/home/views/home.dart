@@ -4,7 +4,6 @@ import 'package:gap/gap.dart';
 import 'package:mod_game/utils/constants/icons.dart';
 import 'package:mod_game/utils/constants/sizes.dart';
 
-import '../../../common/widgets/custom_appbar.dart';
 import 'widgets/category_box.dart';
 import 'widgets/category_title.dart';
 import 'widgets/sliding_banner.dart';
@@ -17,7 +16,6 @@ class HomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const CustomAppBar(title: 'Melon Mods'),
       body: SingleChildScrollView(
         child: Column(
           children: [

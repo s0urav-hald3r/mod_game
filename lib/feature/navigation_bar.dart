@@ -5,6 +5,7 @@ import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mod_game/common/controllers/navigation_bar_controller.dart';
+import 'package:mod_game/common/widgets/custom_appbar.dart';
 import 'package:mod_game/feature/community/views/community.dart';
 import 'package:mod_game/feature/download/views/download.dart';
 import 'package:mod_game/feature/home/views/home.dart';
@@ -28,6 +29,7 @@ class _NavigationBarViewState extends State<NavigationBarView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: const CustomAppBar(),
       body: Stack(
         alignment: Alignment.bottomCenter,
         children: [

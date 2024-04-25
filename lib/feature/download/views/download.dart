@@ -5,15 +5,12 @@ import 'package:mod_game/common/styles/space_with_appbar.dart';
 import 'package:mod_game/feature/download/views/widgets/download_game_card.dart';
 import 'package:mod_game/utils/constants/sizes.dart';
 
-import '../../../common/widgets/custom_appbar.dart';
-
 class DownloadView extends StatelessWidget {
   const DownloadView({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const CustomAppBar(title: 'DOWNLOAD'),
       body: SingleChildScrollView(
         padding: XSpacing.defaultSideSpace,
         child: Column(

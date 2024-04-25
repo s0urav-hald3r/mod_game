@@ -6,7 +6,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:mod_game/common/styles/space_with_appbar.dart';
 import 'package:mod_game/feature/search/controllers/search_controller.dart';
 
-import '../../../common/widgets/custom_appbar.dart';
 import '../../../utils/constants/colors.dart';
 import '../../../utils/constants/icons.dart';
 import '../../../utils/constants/sizes.dart';
@@ -18,7 +17,6 @@ class SearchView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const CustomAppBar(title: 'Melon Mods'),
       body: SingleChildScrollView(
         child: Column(
           children: [

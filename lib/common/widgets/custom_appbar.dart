@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:mod_game/common/controllers/navigation_bar_controller.dart';
 import 'package:mod_game/utils/constants/icons.dart';
 
 import '../../utils/constants/colors.dart';
@@ -10,11 +12,26 @@ import '../styles/left_padding.dart';
 import '../styles/right_padding.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
-  final String title;
-  const CustomAppBar({super.key, required this.title});
+  const CustomAppBar({super.key});
 
   @override
   Size get preferredSize => const Size.fromHeight(kToolbarHeight);
+
+  _getTitle() {
+    switch (NavigationBarController.instance.screenIndex) {
+      case 0:
+        return 'Melon Mods';
+
+      case 1:
+        return 'Search';
+
+      case 2:
+        return 'Community';
+
+      case 3:
+        return 'Download';
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -27,12 +44,14 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
 
       // Title
       centerTitle: true,
-      title: Text(
-        title.toUpperCase(),
-        style: GoogleFonts.piedra(
-          fontSize: 16.sp,
-          fontWeight: FontWeight.w400,
-          color: XColor.secondayColor,
+      title: Obx(
+        () => Text(
+          _getTitle().toUpperCase(),
+          style: GoogleFonts.piedra(
+            fontSize: 16.sp,
+            fontWeight: FontWeight.w400,
+            color: XColor.secondayColor,
+          ),
         ),
       ),
 

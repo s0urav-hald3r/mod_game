@@ -10,7 +10,7 @@ import '../../../common/styles/space_with_appbar.dart';
 import '../../../utils/constants/colors.dart';
 import '../../game_details/views/widgets/recommended_card.dart';
 import '../../home/views/widgets/category_title.dart';
-import '../../home/views/widgets/trending_card.dart';
+import '../../../common/widgets/trending_card.dart';
 import '../../search/controllers/search_controller.dart';
 
 class CommunityView extends StatelessWidget {

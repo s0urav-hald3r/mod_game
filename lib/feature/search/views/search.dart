@@ -9,7 +9,7 @@ import 'package:mod_game/feature/search/controllers/search_controller.dart';
 import '../../../utils/constants/colors.dart';
 import '../../../utils/constants/icons.dart';
 import '../../../utils/constants/sizes.dart';
-import '../../home/views/widgets/trending_card.dart';
+import '../../../common/widgets/trending_card.dart';
 
 class SearchView extends StatelessWidget {
   const SearchView({super.key});

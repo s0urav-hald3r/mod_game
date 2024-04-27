@@ -4,11 +4,11 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:mod_game/feature/game_details/views/game_details.dart';
 import 'package:mod_game/utils/helper/navigation.dart';
 
-import '../../../../common/styles/corner_clipper.dart';
-import '../../../../common/styles/corner_painter.dart';
-import '../../../../common/widgets/game_name_download.dart';
-import '../../../../utils/constants/colors.dart';
-import '../../../../utils/constants/sizes.dart';
+import '../styles/corner_clipper.dart';
+import '../styles/corner_painter.dart';
+import 'game_name_download.dart';
+import '../../utils/constants/colors.dart';
+import '../../utils/constants/sizes.dart';
 
 class TrendingCard extends StatelessWidget {
   const TrendingCard({
@@ -54,26 +54,35 @@ class TrendingCard extends StatelessWidget {
             onTap: () => Navigation.push(const GameDetailsView()),
             child: CustomPaint(
               painter: CornerPainter(
-                  color: XColor.deepYellow,
-                  opacity: .5,
-                  stroke: 1.sp,
-                  startPoint: 15),
+                color: XColor.deepYellow.withOpacity(.3),
+                stroke: 0.5.sp,
+                vPoint: 40,
+                hPoint: 85,
+              ),
               child: ClipPath(
-                clipper: CornerClipper(startPoint: 15),
-                child: SizedBox(
-                  width: 100.w,
+                clipper: CornerClipper(
+                  vPoint: 40,
+                  hPoint: 85,
+                ),
+                child: Container(
+                  width: 98.w,
                   height: 35.h,
+                  color: XColor.black.withOpacity(.6),
                   child: Center(
                     child: CustomPaint(
                       painter: CornerPainter(
-                          color: XColor.darkerGrey,
-                          opacity: 1,
-                          stroke: 2.sp,
-                          startPoint: 15),
+                        color: XColor.darkerGrey,
+                        stroke: 1.sp,
+                        vPoint: 40,
+                        hPoint: 87,
+                      ),
                       child: ClipPath(
-                        clipper: CornerClipper(startPoint: 15),
+                        clipper: CornerClipper(
+                          vPoint: 40,
+                          hPoint: 87,
+                        ),
                         child: Container(
-                          width: 90.w,
+                          width: 89.w,
                           height: 27.h,
                           color: XColor.deepYellow,
                           child: Center(

@@ -8,7 +8,7 @@ import 'widgets/category_box.dart';
 import 'widgets/category_title.dart';
 import 'widgets/sliding_banner.dart';
 import 'widgets/sliding_banner_indecator.dart';
-import 'widgets/trending_card.dart';
+import '../../../common/widgets/trending_card.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});

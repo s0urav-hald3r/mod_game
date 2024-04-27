@@ -6,11 +6,9 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:mod_game/common/styles/right_padding.dart';
 import 'package:mod_game/utils/constants/sizes.dart';
 
+import '../../../../common/styles/corner_clipper.dart';
+import '../../../../common/styles/corner_painter.dart';
 import '../../../../utils/constants/colors.dart';
-import 'inner_box_clipper.dart';
-import 'inner_box_painter.dart';
-import 'outer_box_clipper.dart';
-import 'outer_box_painter.dart';
 
 class CategoryBox extends StatelessWidget {
   final bool isSelect;
@@ -29,20 +27,34 @@ class CategoryBox extends StatelessWidget {
       child: Column(
         children: [
           CustomPaint(
-            painter: OuterBoxPainter(),
+            painter: CornerPainter(
+              color: XColor.primaryColor.withOpacity(.3),
+              stroke: 1.sp,
+              vPoint: 14,
+              hPoint: 86,
+            ),
             child: ClipPath(
-              clipper: OuterBoxClipper(),
+              clipper: CornerClipper(
+                vPoint: 14,
+                hPoint: 86,
+              ),
               child: SizedBox(
                 width: 70.sp,
                 height: 70.sp,
                 child: Center(
                   child: CustomPaint(
-                    painter: InnerBoxPainter(
-                        color: isSelect
-                            ? XColor.secondayColor
-                            : XColor.darkerGrey),
+                    painter: CornerPainter(
+                      color:
+                          isSelect ? XColor.secondayColor : XColor.darkerGrey,
+                      stroke: 0.75.sp,
+                      vPoint: 14,
+                      hPoint: 86,
+                    ),
                     child: ClipPath(
-                      clipper: InnerBoxClipper(),
+                      clipper: CornerClipper(
+                        vPoint: 14,
+                        hPoint: 86,
+                      ),
                       child: Container(
                         width: 60.sp,
                         height: 60.sp,

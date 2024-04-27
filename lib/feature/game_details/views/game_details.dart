@@ -76,29 +76,31 @@ class GameDetailsView extends StatelessWidget {
                 children: [
                   CustomPaint(
                     painter: CornerPainter(
-                        color: XColor.deepYellow,
-                        opacity: .5,
-                        stroke: 1.sp,
-                        startPoint: 15),
+                      color: XColor.deepYellow.withOpacity(.3),
+                      stroke: 0.5.sp,
+                      vPoint: 40,
+                      hPoint: 90,
+                    ),
                     child: ClipPath(
-                      clipper: CornerClipper(startPoint: 15),
+                      clipper: CornerClipper(vPoint: 40, hPoint: 90),
                       child: Container(
                         width: 157.w,
                         height: 40.h,
-                        color: XColor.black,
+                        color: XColor.black.withOpacity(.6),
                         child: Center(
                           child: CustomPaint(
                             painter: CornerPainter(
-                                color: XColor.deepYellow,
-                                opacity: .5,
-                                stroke: 1.sp,
-                                startPoint: 15),
+                              color: XColor.deepYellow.withOpacity(.3),
+                              stroke: 0.5.sp,
+                              vPoint: 43,
+                              hPoint: 91,
+                            ),
                             child: ClipPath(
-                              clipper: CornerClipper(startPoint: 15),
+                              clipper: CornerClipper(vPoint: 43, hPoint: 91),
                               child: Container(
                                 width: 148.w,
                                 height: 30.h,
-                                color: XColor.black,
+                                color: XColor.black.withOpacity(.2),
                                 child: Center(
                                   child: Text(
                                     'Learn More'.toUpperCase(),
@@ -118,32 +120,34 @@ class GameDetailsView extends StatelessWidget {
                   ),
                   CustomPaint(
                     painter: CornerPainter(
-                        color: XColor.deepYellow,
-                        opacity: .5,
-                        stroke: 1.sp,
-                        startPoint: 15),
+                      color: XColor.deepYellow.withOpacity(.3),
+                      stroke: 0.5.sp,
+                      vPoint: 40,
+                      hPoint: 90,
+                    ),
                     child: ClipPath(
-                      clipper: CornerClipper(startPoint: 15),
+                      clipper: CornerClipper(vPoint: 40, hPoint: 90),
                       child: Container(
                         width: 157.w,
                         height: 40.h,
-                        color: XColor.black,
+                        color: XColor.black.withOpacity(.6),
                         child: Center(
                           child: CustomPaint(
                             painter: CornerPainter(
-                                color: XColor.deepYellow,
-                                opacity: .5,
-                                stroke: 1.sp,
-                                startPoint: 15),
+                              color: XColor.deepYellow.withOpacity(.3),
+                              stroke: 0.5.sp,
+                              vPoint: 43,
+                              hPoint: 91,
+                            ),
                             child: ClipPath(
-                              clipper: CornerClipper(startPoint: 15),
+                              clipper: CornerClipper(vPoint: 43, hPoint: 91),
                               child: Container(
                                 width: 148.w,
                                 height: 30.h,
                                 color: XColor.deepYellow,
                                 child: Center(
                                   child: Text(
-                                    'Learn More'.toUpperCase(),
+                                    'Download'.toUpperCase(),
                                     style: GoogleFonts.quantico(
                                         fontWeight: FontWeight.w700,
                                         fontSize: 12.sp,

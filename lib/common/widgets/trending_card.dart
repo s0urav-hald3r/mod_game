@@ -73,13 +73,13 @@ class TrendingCard extends StatelessWidget {
                       painter: CornerPainter(
                         color: XColor.darkerGrey,
                         stroke: 1.sp,
-                        vPoint: 40,
-                        hPoint: 87,
+                        vPoint: 42,
+                        hPoint: 86,
                       ),
                       child: ClipPath(
                         clipper: CornerClipper(
-                          vPoint: 40,
-                          hPoint: 87,
+                          vPoint: 42,
+                          hPoint: 86,
                         ),
                         child: Container(
                           width: 89.w,

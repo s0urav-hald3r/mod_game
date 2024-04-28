@@ -12,7 +12,8 @@ import '../styles/left_padding.dart';
 import '../styles/right_padding.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
-  const CustomAppBar({super.key});
+  final Function openDrawer;
+  const CustomAppBar({super.key, required this.openDrawer});
 
   @override
   Size get preferredSize => const Size.fromHeight(kToolbarHeight);
@@ -38,8 +39,11 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     return AppBar(
       // Leading
       leadingWidth: 24.w + XSize.defaultSpace.w,
-      leading: LeftPadding(
-        child: SvgPicture.asset(XIcon.menuIcon, height: 24.sp, width: 24.sp),
+      leading: InkWell(
+        onTap: () => openDrawer(),
+        child: LeftPadding(
+          child: SvgPicture.asset(XIcon.menuIcon, height: 24.sp, width: 24.sp),
+        ),
       ),
 
       // Title

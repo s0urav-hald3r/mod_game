@@ -24,12 +24,18 @@ class NavigationBarView extends StatefulWidget {
 }
 
 class _NavigationBarViewState extends State<NavigationBarView> {
+  final GlobalKey<ScaffoldState> _key = GlobalKey();
   final controller = NavigationBarController.instance;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const CustomAppBar(),
+      key: _key,
+      appBar: CustomAppBar(openDrawer: () => _key.currentState?.openDrawer()),
+      drawer: const Drawer(
+        backgroundColor: XColor.primaryColor,
+        shadowColor: XColor.darkerGrey,
+      ),
       body: Stack(
         alignment: Alignment.bottomCenter,
         children: [

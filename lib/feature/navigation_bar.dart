@@ -14,6 +14,7 @@ import 'package:mod_game/utils/constants/colors.dart';
 import 'package:mod_game/utils/constants/sizes.dart';
 import 'package:mod_game/utils/helper/extension.dart';
 
+import '../common/widgets/custom_drawer.dart';
 import '../utils/constants/icons.dart';
 
 class NavigationBarView extends StatefulWidget {
@@ -32,10 +33,7 @@ class _NavigationBarViewState extends State<NavigationBarView> {
     return Scaffold(
       key: _key,
       appBar: CustomAppBar(openDrawer: () => _key.currentState?.openDrawer()),
-      drawer: const Drawer(
-        backgroundColor: XColor.primaryColor,
-        shadowColor: XColor.darkerGrey,
-      ),
+      drawer: const CustomDrawer(),
       body: Stack(
         alignment: Alignment.bottomCenter,
         children: [

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mod_game/bindings/general_bindings.dart';
 import 'package:mod_game/feature/navigation_bar.dart';
+import 'package:mod_game/utils/constants/sizes.dart';
 import 'package:mod_game/utils/helper/navigation.dart';
 import 'package:get/get.dart';
 
@@ -31,6 +32,10 @@ class App extends StatelessWidget {
             ),
             primaryColor: XColor.primaryColor,
             scaffoldBackgroundColor: XColor.scaffoldDarkBackgroundColor,
+            dividerTheme: DividerThemeData(
+                color: XColor.secondayColor.withOpacity(.3),
+                thickness: 1.sp,
+                space: XSize.spaceBtwSections.h),
           ),
           initialBinding: GeneralBindings(),
           navigatorKey: Navigation.navigatorKey,

@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:mod_game/common/widgets/no_data.dart';
+import 'package:mod_game/feature/community/controllers/community_controller.dart';
 import 'package:mod_game/utils/constants/icons.dart';
 import 'package:mod_game/utils/constants/sizes.dart';
 
@@ -11,13 +14,14 @@ import '../../../common/widgets/recommended_card.dart';
 import '../../home/controllers/home_controller.dart';
 import '../../home/views/widgets/category_title.dart';
 import '../../../common/widgets/trending_card.dart';
-import '../../search/controllers/search_controller.dart' as GetX;
 
 class CommunityView extends StatelessWidget {
   const CommunityView({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final controller = CommunityController.instance;
+
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -39,7 +43,8 @@ class CommunityView extends StatelessWidget {
                   Gap(XSize.spaceBtwItems.w),
                   Expanded(
                     child: TextFormField(
-                      controller: GetX.SearchController.instance.search,
+                      controller: controller.search,
+                      onChanged: (value) => controller.filterMods(),
                       style: TextStyle(
                         color: XColor.white,
                         fontSize: 12.sp,
@@ -80,19 +85,21 @@ class CommunityView extends StatelessWidget {
               Gap(XSize.spaceBtwSections.h),
 
               // List of recommended mods
-              SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                padding: EdgeInsets.only(left: XSize.defaultSpace.w),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    ...HomeController.instance.recommendedMods
-                        .map((e) => RecommendedCard(mod: e))
-                        .toList(),
-                    Gap(XSize.spaceBtwItems.w),
-                  ],
-                ),
-              ),
+              Obx(() => controller.filteredRecommended.isNotEmpty
+                  ? SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      padding: EdgeInsets.only(left: XSize.defaultSpace.w),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          ...controller.filteredRecommended
+                              .map((e) => RecommendedCard(mod: e))
+                              .toList(),
+                          Gap(XSize.spaceBtwItems.w),
+                        ],
+                      ),
+                    )
+                  : const NoData()),
             ],
 
             if (HomeController.instance.mostTrendingMods.isNotEmpty) ...[
@@ -103,11 +110,13 @@ class CommunityView extends StatelessWidget {
               Gap(XSize.spaceBtwSections.h),
 
               // List of trending mods
-              Column(
-                children: HomeController.instance.mostTrendingMods
-                    .map((e) => TrendingCard(mod: e))
-                    .toList(),
-              ),
+              Obx(() => controller.filteredTrending.isNotEmpty
+                  ? Column(
+                      children: controller.filteredTrending
+                          .map((e) => TrendingCard(mod: e))
+                          .toList(),
+                    )
+                  : const NoData()),
             ],
 
             //Bottom Navigation Bar Heigth

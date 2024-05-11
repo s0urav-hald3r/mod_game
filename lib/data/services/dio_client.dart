@@ -29,9 +29,9 @@ class DioClient {
   }
 
   // POST METHOD
-  Future<Response> post(String url, {dynamic data}) async {
+  Future<Response> post(String url, {dynamic body}) async {
     try {
-      final Response response = await _dio.post(url, data: data);
+      final Response response = await _dio.post(url, data: body);
       return response;
     } catch (e) {
       rethrow;
@@ -39,12 +39,9 @@ class DioClient {
   }
 
   // PUT METHOD
-  Future<Response> put(String url, {dynamic data}) async {
+  Future<Response> put(String url, {dynamic body}) async {
     try {
-      final Response response = await _dio.put(
-        url,
-        data: data,
-      );
+      final Response response = await _dio.put(url, data: body);
       return response;
     } catch (e) {
       rethrow;
@@ -52,13 +49,10 @@ class DioClient {
   }
 
   // DELETE METHOD
-  Future<dynamic> delete(String url, {dynamic data}) async {
+  Future<Response> delete(String url, {dynamic body}) async {
     try {
-      final Response response = await _dio.delete(
-        url,
-        data: data,
-      );
-      return response.data;
+      final Response response = await _dio.delete(url, data: body);
+      return response;
     } catch (e) {
       rethrow;
     }

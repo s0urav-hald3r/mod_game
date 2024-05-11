@@ -9,14 +9,7 @@ class XLoader {
 
   static show() {
     Get.dialog(
-      Center(
-        child: Container(
-          color: Colors.transparent,
-          width: 150.h,
-          height: 150.h,
-          child: Image.asset(XImage.loader),
-        ),
-      ),
+      const LoadingWidget(),
       barrierDismissible: false,
       barrierColor: XColor.black.withOpacity(.75),
     );
@@ -24,5 +17,21 @@ class XLoader {
 
   static hide() {
     Get.back();
+  }
+}
+
+class LoadingWidget extends StatelessWidget {
+  const LoadingWidget({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Container(
+        color: Colors.transparent,
+        width: 150.h,
+        height: 150.h,
+        child: Image.asset(XImage.loader),
+      ),
+    );
   }
 }

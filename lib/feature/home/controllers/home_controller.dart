@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:get/get.dart' hide FormData;
 import 'package:mod_game/common/controllers/network_controller.dart';
 import 'package:mod_game/common/models/mod.dart';
+import 'package:mod_game/common/widgets/snackbar.dart';
 import 'package:mod_game/data/repositorys/home_repo.dart';
 import 'package:mod_game/utils/constants/enums.dart';
 
@@ -60,6 +61,7 @@ class HomeController extends GetxController {
     final isConnected = await NetworkController.instance.isConnected();
     if (!isConnected) {
       isTrendingLoading = false;
+      XSnackBar.show('Error', 'No internet available', 2);
       return;
     }
 
@@ -79,6 +81,7 @@ class HomeController extends GetxController {
     final isConnected = await NetworkController.instance.isConnected();
     if (!isConnected) {
       isCategoryLoading = false;
+      XSnackBar.show('Error', 'No internet available', 2);
       return;
     }
 

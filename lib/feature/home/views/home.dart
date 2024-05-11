@@ -37,8 +37,8 @@ class HomeView extends StatelessWidget {
             SingleChildScrollView(
               scrollDirection: Axis.horizontal,
               padding: EdgeInsets.only(left: XSize.defaultSpace.w),
-              child: Row(
-                children: const [
+              child: const Row(
+                children: [
                   CategoryBox(
                     icon: XIcon.slashingIcon,
                     title: 'Slashing',

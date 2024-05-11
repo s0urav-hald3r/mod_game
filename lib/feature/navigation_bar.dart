@@ -62,9 +62,9 @@ class _NavigationBarViewState extends State<NavigationBarView> {
           width: double.infinity,
           height: 70.h,
           color: XColor.darkerGrey,
-          child: Row(
+          child: const Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: const [
+            children: [
               NavBarItem(
                 icon: XIcon.navHomeIcon,
                 selectedIcon: XIcon.navSelectHomeIcon,

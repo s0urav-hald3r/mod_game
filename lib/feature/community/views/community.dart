@@ -11,7 +11,7 @@ import '../../../utils/constants/colors.dart';
 import '../../game_details/views/widgets/recommended_card.dart';
 import '../../home/views/widgets/category_title.dart';
 import '../../../common/widgets/trending_card.dart';
-import '../../search/controllers/search_controller.dart';
+import '../../search/controllers/search_controller.dart' as GetX;
 
 class CommunityView extends StatelessWidget {
   const CommunityView({super.key});
@@ -37,7 +37,7 @@ class CommunityView extends StatelessWidget {
                   Gap(XSize.spaceBtwItems.w),
                   Expanded(
                     child: TextFormField(
-                      controller: SearchController.instance.search,
+                      controller: GetX.SearchController.instance.search,
                       style: TextStyle(
                         color: XColor.white,
                         fontSize: 12.sp,

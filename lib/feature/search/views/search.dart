@@ -4,7 +4,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mod_game/common/styles/space_with_appbar.dart';
-import 'package:mod_game/feature/search/controllers/search_controller.dart';
+import 'package:mod_game/feature/search/controllers/search_controller.dart'
+    as GetX;
 
 import '../../../utils/constants/colors.dart';
 import '../../../utils/constants/icons.dart';
@@ -35,7 +36,7 @@ class SearchView extends StatelessWidget {
                   Gap(XSize.spaceBtwItems.w),
                   Expanded(
                     child: TextFormField(
-                      controller: SearchController.instance.search,
+                      controller: GetX.SearchController.instance.search,
                       style: TextStyle(
                         color: XColor.white,
                         fontSize: 12.sp,

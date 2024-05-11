@@ -13,7 +13,7 @@ class DioClient {
               baseUrl: XEndpoint.baseUrl,
               connectTimeout: const Duration(seconds: 10),
               receiveTimeout: const Duration(seconds: 10),
-              headers: {'Content-Type': 'application/json; charset=UTF-8'},
+              contentType: Headers.multipartFormDataContentType,
               responseType: ResponseType.json),
         )..interceptors
             .addAll([AuthorizationInterceptor(), LoggerInterceptor()]);

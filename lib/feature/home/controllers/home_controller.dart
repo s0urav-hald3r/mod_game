@@ -13,9 +13,11 @@ class HomeController extends GetxController {
 
   final RxList<Mod> _mostTrendingMods = <Mod>[].obs;
   final RxList<Mod> _categoryMods = <Mod>[].obs;
+  final RxList<Mod> _recommendedMods = <Mod>[].obs;
 
   final RxBool _isTrendingLoading = false.obs;
   final RxBool _isCategoryLoading = false.obs;
+  final RxBool _isRecommendedLoading = false.obs;
 
   final Rx<ModType> _selectedModType = ModType.SLASHING.obs;
 
@@ -27,9 +29,11 @@ class HomeController extends GetxController {
 
   List<Mod> get mostTrendingMods => _mostTrendingMods;
   List<Mod> get categoryMods => _categoryMods;
+  List<Mod> get recommendedMods => _recommendedMods;
 
   bool get isTrendingLoading => _isTrendingLoading.value;
   bool get isCategoryLoading => _isCategoryLoading.value;
+  bool get isRecommendedLoading => _isRecommendedLoading.value;
 
   ModType get selectedModType => _selectedModType.value;
 
@@ -41,9 +45,11 @@ class HomeController extends GetxController {
 
   set mostTrendingMods(mods) => _mostTrendingMods.value = mods;
   set categoryMods(mods) => _categoryMods.value = mods;
+  set recommendedMods(mods) => _recommendedMods.value = mods;
 
   set isTrendingLoading(loading) => _isTrendingLoading.value = loading;
   set isCategoryLoading(loading) => _isCategoryLoading.value = loading;
+  set isRecommendedLoading(loading) => _isRecommendedLoading.value = loading;
 
   set selectedModType(loading) => _selectedModType.value = loading;
 
@@ -71,6 +77,26 @@ class HomeController extends GetxController {
 
     // Stop Loader
     isTrendingLoading = false;
+  }
+
+  Future<void> getRecommendedMods() async {
+    // Start Loader
+    isRecommendedLoading = true;
+
+    // Check internet connection
+    final isConnected = await NetworkController.instance.isConnected();
+    if (!isConnected) {
+      isRecommendedLoading = false;
+      XSnackBar.show('Error', 'No internet available', 2);
+      return;
+    }
+
+    // API call
+    recommendedMods = await HomeRepo.instance
+        .getMods(FormData.fromMap({'category': ModType.RECOMMENDED.title}));
+
+    // Stop Loader
+    isRecommendedLoading = false;
   }
 
   Future<void> getCategoryMods(ModType modType) async {

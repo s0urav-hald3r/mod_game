@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:mod_game/common/styles/horizontal_padding.dart';
 import 'package:mod_game/common/styles/space_with_appbar.dart';
 import 'package:mod_game/common/models/mod.dart';
+import 'package:mod_game/feature/home/controllers/home_controller.dart';
 import 'package:mod_game/feature/home/views/widgets/category_title.dart';
 import 'package:mod_game/utils/constants/sizes.dart';
 
@@ -13,7 +14,7 @@ import '../../../common/styles/corner_painter.dart';
 import '../../../common/widgets/custom_appbar_back.dart';
 import '../../../common/widgets/game_name_download.dart';
 import '../../../utils/constants/colors.dart';
-import 'widgets/recommended_card.dart';
+import '../../../common/widgets/recommended_card.dart';
 
 class GameDetailsView extends StatelessWidget {
   final Mod mod;
@@ -158,28 +159,29 @@ class GameDetailsView extends StatelessWidget {
                 ],
               ),
             ),
-            Gap(XSize.defaultSpace.h),
 
-            // Top recommended
-            const CategoryTitle(title: '👑 Top Recommended'),
-            Gap(XSize.defaultSpace.h),
+            if (HomeController.instance.recommendedMods.isNotEmpty) ...[
+              Gap(XSize.spaceBtwSections.h),
 
-            // List of recommended
-            SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              padding: EdgeInsets.only(left: XSize.defaultSpace.w),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  ...[
-                    const RecommendedCard(),
-                    const RecommendedCard(),
-                    const RecommendedCard(),
+              // Top recommended
+              const CategoryTitle(title: '👑 Top Recommended'),
+              Gap(XSize.spaceBtwSections.h),
+
+              // List of recommended mods
+              SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                padding: EdgeInsets.only(left: XSize.defaultSpace.w),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    ...HomeController.instance.recommendedMods
+                        .map((e) => RecommendedCard(mod: e))
+                        .toList(),
+                    Gap(XSize.spaceBtwItems.w),
                   ],
-                  Gap(XSize.spaceBtwItems.w),
-                ],
+                ),
               ),
-            ),
+            ],
             Gap(XSize.defaultSpace.h),
           ],
         ),

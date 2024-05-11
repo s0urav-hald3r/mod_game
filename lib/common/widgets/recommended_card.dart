@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:mod_game/common/models/mod.dart';
 
-import '../../../../common/widgets/game_name_download.dart';
-import '../../../../utils/constants/colors.dart';
-import '../../../../utils/constants/sizes.dart';
+import 'game_name_download.dart';
+import '../../utils/constants/colors.dart';
+import '../../utils/constants/sizes.dart';
 
 class RecommendedCard extends StatelessWidget {
-  const RecommendedCard({
-    super.key,
-  });
+  final Mod mod;
+  const RecommendedCard({super.key, required this.mod});
 
   @override
   Widget build(BuildContext context) {
@@ -25,16 +25,17 @@ class RecommendedCard extends StatelessWidget {
           Padding(
             padding: EdgeInsets.fromLTRB((XSize.spaceBtwItems / 2).w,
                 (XSize.spaceBtwItems / 2).h, (XSize.spaceBtwItems / 2).w, 0),
-            child: Image.asset(
-              'assets/images/banner_2.png',
+            child: Image.network(
+              mod.image,
               fit: BoxFit.cover,
+              width: double.infinity,
               height: 100.h,
             ),
           ),
           const Spacer(),
-          const GameNameDownload(
-            gameName: 'Ultimate One Piece',
-            gameDownload: '2956 Download',
+          GameNameDownload(
+            gameName: mod.title ?? '',
+            gameDownload: '${mod.downloads} Download',
             borderColor: XColor.secondayColor,
           ),
           const Spacer(),

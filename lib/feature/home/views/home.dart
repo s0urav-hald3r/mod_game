@@ -31,6 +31,9 @@ class _HomeViewState extends State<HomeView> {
     if (_homeController.mostTrendingMods.isEmpty) {
       _homeController.getMostTrendingMods();
     }
+    if (_homeController.recommendedMods.isEmpty) {
+      _homeController.getRecommendedMods();
+    }
   }
 
   @override

@@ -6,9 +6,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:mod_game/utils/constants/icons.dart';
 import 'package:mod_game/utils/constants/sizes.dart';
 
-import '../../../common/styles/space_with_appbar.dart';
 import '../../../utils/constants/colors.dart';
-import '../../game_details/views/widgets/recommended_card.dart';
+import '../../../common/widgets/recommended_card.dart';
 import '../../home/controllers/home_controller.dart';
 import '../../home/views/widgets/category_title.dart';
 import '../../../common/widgets/trending_card.dart';
@@ -23,11 +22,13 @@ class CommunityView extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
+            Gap(XSize.spaceBtwSections.h),
+
             // Search Box
             Container(
               height: 40.h,
               width: double.infinity,
-              margin: XSpacing.defaultSideSpace,
+              margin: EdgeInsets.symmetric(horizontal: XSize.defaultSpace.w),
               decoration: BoxDecoration(
                   border: Border.all(width: 2, color: XColor.primaryColor)),
               child: Row(
@@ -71,26 +72,28 @@ class CommunityView extends StatelessWidget {
               ),
             ),
 
-            // Top recommended
-            const CategoryTitle(title: '👑 Top Recommended'),
-            Gap(XSize.defaultSpace.h),
+            if (HomeController.instance.recommendedMods.isNotEmpty) ...[
+              Gap(XSize.spaceBtwSections.h),
 
-            // List of recommended
-            SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              padding: EdgeInsets.only(left: XSize.defaultSpace.w),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  ...[
-                    const RecommendedCard(),
-                    const RecommendedCard(),
-                    const RecommendedCard(),
+              // Top recommended
+              const CategoryTitle(title: '👑 Top Recommended'),
+              Gap(XSize.spaceBtwSections.h),
+
+              // List of recommended mods
+              SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                padding: EdgeInsets.only(left: XSize.defaultSpace.w),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    ...HomeController.instance.recommendedMods
+                        .map((e) => RecommendedCard(mod: e))
+                        .toList(),
+                    Gap(XSize.spaceBtwItems.w),
                   ],
-                  Gap(XSize.spaceBtwItems.w),
-                ],
+                ),
               ),
-            ),
+            ],
 
             if (HomeController.instance.mostTrendingMods.isNotEmpty) ...[
               Gap(XSize.spaceBtwSections.h),
@@ -99,6 +102,7 @@ class CommunityView extends StatelessWidget {
               const CategoryTitle(title: '🔥 Most Trending'),
               Gap(XSize.spaceBtwSections.h),
 
+              // List of trending mods
               Column(
                 children: HomeController.instance.mostTrendingMods
                     .map((e) => TrendingCard(mod: e))

@@ -23,26 +23,7 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
-  late HomeController _homeController;
-
-  @override
-  void initState() {
-    super.initState();
-    _homeController = HomeController.instance;
-    makeAPIs();
-  }
-
-  Future<void> makeAPIs() async {
-    if (_homeController.mostTrendingMods.isEmpty) {
-      await _homeController.getMostTrendingMods();
-    }
-
-    if (_homeController.recommendedMods.isEmpty) {
-      await _homeController.getRecommendedMods();
-    }
-
-    PageViewController.instance.setModsForSlider();
-  }
+  final _homeController = HomeController.instance;
 
   @override
   Widget build(BuildContext context) {

@@ -8,6 +8,8 @@ import 'package:mod_game/common/controllers/navigation_bar_controller.dart';
 import 'package:mod_game/common/widgets/custom_appbar.dart';
 import 'package:mod_game/feature/community/views/community.dart';
 import 'package:mod_game/feature/download/views/download.dart';
+import 'package:mod_game/feature/home/controllers/home_controller.dart';
+import 'package:mod_game/feature/home/controllers/page_view_controller.dart';
 import 'package:mod_game/feature/home/views/home.dart';
 import 'package:mod_game/feature/search/views/search.dart';
 import 'package:mod_game/utils/constants/colors.dart';
@@ -27,6 +29,25 @@ class NavigationBarView extends StatefulWidget {
 class _NavigationBarViewState extends State<NavigationBarView> {
   final GlobalKey<ScaffoldState> _key = GlobalKey();
   final controller = NavigationBarController.instance;
+  final _homeController = HomeController.instance;
+
+  @override
+  void initState() {
+    super.initState();
+    makeAPIs();
+  }
+
+  Future<void> makeAPIs() async {
+    if (_homeController.mostTrendingMods.isEmpty) {
+      await _homeController.getMostTrendingMods();
+    }
+
+    if (_homeController.recommendedMods.isEmpty) {
+      await _homeController.getRecommendedMods();
+    }
+
+    PageViewController.instance.setModsForSlider();
+  }
 
   @override
   Widget build(BuildContext context) {

@@ -8,9 +8,9 @@ import 'package:mod_game/common/styles/space_with_appbar.dart';
 import 'package:mod_game/feature/search/controllers/search_controller.dart'
     as GetX;
 
+import '../../../common/widgets/no_data.dart';
 import '../../../utils/constants/colors.dart';
 import '../../../utils/constants/icons.dart';
-import '../../../utils/constants/images.dart';
 import '../../../utils/constants/sizes.dart';
 import '../../../common/widgets/trending_card.dart';
 
@@ -73,32 +73,15 @@ class SearchView extends StatelessWidget {
                 ],
               ),
             ),
-            Obx(() => controller.filteredMods.isNotEmpty
-                ? Column(
-                    children: controller.filteredMods
-                        .map((e) => TrendingCard(mod: e))
-                        .toList(),
-                  )
-                : Center(
-                    child: Padding(
-                      padding: XSpacing.defaultSideSpace,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Image.asset(XImage.noData),
-                          Text(
-                            "No mods available!",
-                            style: GoogleFonts.raleway(
-                                fontWeight: FontWeight.w400,
-                                fontSize: 14.sp,
-                                letterSpacing: .5,
-                                color: XColor.lightYellow),
-                            textAlign: TextAlign.center,
-                          ),
-                        ],
-                      ),
-                    ),
-                  )),
+            Obx(
+              () => controller.filteredMods.isNotEmpty
+                  ? Column(
+                      children: controller.filteredMods
+                          .map((e) => TrendingCard(mod: e))
+                          .toList(),
+                    )
+                  : const NoData(),
+            ),
 
             //Bottom Navigation Bar Heigth
             Gap(XSize.customBottomBarHeigth.h)

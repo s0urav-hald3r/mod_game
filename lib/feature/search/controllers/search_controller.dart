@@ -36,8 +36,6 @@ class SearchController extends GetxController {
 
   //  ---------------------------------------------------------------------------------
 
-  //  ---------------------------------------------------------------------------------
-
   //  ---------------------------------* Setter Start *--------------------------------
 
   set allMods(mods) => _allMods.value = mods;
@@ -50,6 +48,7 @@ class SearchController extends GetxController {
   filterMods() {
     if (search.text.isEmpty) {
       filteredMods = allMods;
+      return;
     }
     filteredMods = allMods
         .where((item) =>

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mod_game/common/styles/space_with_appbar.dart';
 import 'package:mod_game/feature/search/controllers/search_controller.dart'
@@ -9,6 +10,7 @@ import 'package:mod_game/feature/search/controllers/search_controller.dart'
 
 import '../../../utils/constants/colors.dart';
 import '../../../utils/constants/icons.dart';
+import '../../../utils/constants/images.dart';
 import '../../../utils/constants/sizes.dart';
 import '../../../common/widgets/trending_card.dart';
 
@@ -17,6 +19,8 @@ class SearchView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = GetX.SearchController.instance;
+
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -36,7 +40,8 @@ class SearchView extends StatelessWidget {
                   Gap(XSize.spaceBtwItems.w),
                   Expanded(
                     child: TextFormField(
-                      controller: GetX.SearchController.instance.search,
+                      controller: controller.search,
+                      onChanged: (value) => controller.filterMods(),
                       style: TextStyle(
                         color: XColor.white,
                         fontSize: 12.sp,
@@ -68,10 +73,32 @@ class SearchView extends StatelessWidget {
                 ],
               ),
             ),
-
-            const TrendingCard(),
-            const TrendingCard(),
-            const TrendingCard(),
+            Obx(() => controller.filteredMods.isNotEmpty
+                ? Column(
+                    children: controller.filteredMods
+                        .map((e) => TrendingCard(mod: e))
+                        .toList(),
+                  )
+                : Center(
+                    child: Padding(
+                      padding: XSpacing.defaultSideSpace,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Image.asset(XImage.noData),
+                          Text(
+                            "No mods available!",
+                            style: GoogleFonts.raleway(
+                                fontWeight: FontWeight.w400,
+                                fontSize: 14.sp,
+                                letterSpacing: .5,
+                                color: XColor.lightYellow),
+                            textAlign: TextAlign.center,
+                          ),
+                        ],
+                      ),
+                    ),
+                  )),
 
             //Bottom Navigation Bar Heigth
             Gap(XSize.customBottomBarHeigth.h)

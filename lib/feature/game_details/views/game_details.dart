@@ -4,6 +4,7 @@ import 'package:gap/gap.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mod_game/common/styles/horizontal_padding.dart';
 import 'package:mod_game/common/styles/space_with_appbar.dart';
+import 'package:mod_game/common/models/mod.dart';
 import 'package:mod_game/feature/home/views/widgets/category_title.dart';
 import 'package:mod_game/utils/constants/sizes.dart';
 
@@ -15,7 +16,8 @@ import '../../../utils/constants/colors.dart';
 import 'widgets/recommended_card.dart';
 
 class GameDetailsView extends StatelessWidget {
-  const GameDetailsView({super.key});
+  final Mod mod;
+  const GameDetailsView({super.key, required this.mod});
 
   @override
   Widget build(BuildContext context) {
@@ -25,11 +27,11 @@ class GameDetailsView extends StatelessWidget {
         child: Column(
           children: [
             // Game's thumbnail
-            SizedBox(
+            Image.network(
+              mod.image,
+              fit: BoxFit.cover,
               width: double.infinity,
               height: 180.h,
-              child:
-                  Image.asset('assets/images/banner_2.png', fit: BoxFit.cover),
             ),
 
             // Gam's title
@@ -40,25 +42,16 @@ class GameDetailsView extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   // Game's title
-                  const GameNameDownload(
-                    gameName: 'Ultimate One Piece',
-                    gameDownload: '2956 Download',
+                  GameNameDownload(
+                    gameName: mod.title ?? '',
+                    gameDownload: '${mod.downloads} Download',
                     borderColor: XColor.secondayColor,
                   ),
                   Gap(XSize.spaceBtwItems.h),
 
                   // Game's description
                   Text(
-                    '''Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt labore et dolore magna aliqua. Ut enim ad minim.''',
-                    style: GoogleFonts.raleway(
-                        fontWeight: FontWeight.w400,
-                        fontSize: 10.sp,
-                        letterSpacing: .5,
-                        color: XColor.lightYellow),
-                  ),
-                  Gap(XSize.spaceBtwItems.h),
-                  Text(
-                    '''Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt labore et dolore magna aliqua. Ut enim ad minim.''',
+                    mod.description ?? '',
                     style: GoogleFonts.raleway(
                         fontWeight: FontWeight.w400,
                         fontSize: 10.sp,

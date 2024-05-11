@@ -22,7 +22,7 @@ class GameDetailsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const CustomAppBarBack(title: 'Ultimate one piece'),
+      appBar: CustomAppBarBack(title: mod.title!),
       body: SingleChildScrollView(
         child: Column(
           children: [

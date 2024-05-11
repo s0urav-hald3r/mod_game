@@ -9,6 +9,7 @@ import 'package:mod_game/utils/constants/sizes.dart';
 import '../../../common/styles/space_with_appbar.dart';
 import '../../../utils/constants/colors.dart';
 import '../../game_details/views/widgets/recommended_card.dart';
+import '../../home/controllers/home_controller.dart';
 import '../../home/views/widgets/category_title.dart';
 import '../../../common/widgets/trending_card.dart';
 import '../../search/controllers/search_controller.dart' as GetX;
@@ -90,14 +91,20 @@ class CommunityView extends StatelessWidget {
                 ],
               ),
             ),
-            Gap(XSize.defaultSpace.h),
 
-            // Trending Title
-            const CategoryTitle(title: '🔥 Most Treading'),
-            Gap(XSize.spaceBtwSections.h),
+            if (HomeController.instance.mostTrendingMods.isNotEmpty) ...[
+              Gap(XSize.spaceBtwSections.h),
 
-            const TrendingCard(),
-            const TrendingCard(),
+              // Trending Title
+              const CategoryTitle(title: '🔥 Most Trending'),
+              Gap(XSize.spaceBtwSections.h),
+
+              Column(
+                children: HomeController.instance.mostTrendingMods
+                    .map((e) => TrendingCard(mod: e))
+                    .toList(),
+              ),
+            ],
 
             //Bottom Navigation Bar Heigth
             Gap(XSize.customBottomBarHeigth.h)

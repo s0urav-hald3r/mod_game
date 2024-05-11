@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:mod_game/common/models/mod.dart';
 import 'package:mod_game/feature/game_details/views/game_details.dart';
 import 'package:mod_game/utils/helper/navigation.dart';
 
@@ -11,9 +12,8 @@ import '../../utils/constants/colors.dart';
 import '../../utils/constants/sizes.dart';
 
 class TrendingCard extends StatelessWidget {
-  const TrendingCard({
-    super.key,
-  });
+  final Mod mod;
+  const TrendingCard({super.key, required this.mod});
 
   @override
   Widget build(BuildContext context) {
@@ -31,16 +31,16 @@ class TrendingCard extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Image.asset(
-                'assets/images/banner_2.png',
+              Image.network(
+                mod.image,
                 fit: BoxFit.cover,
                 width: double.infinity,
                 height: 130.h,
               ),
               const Spacer(),
-              const GameNameDownload(
-                gameName: 'Ultimate One Piece',
-                gameDownload: '2956 Download',
+              GameNameDownload(
+                gameName: mod.title ?? '',
+                gameDownload: '${mod.downloads} Download',
                 borderColor: XColor.scaffoldDarkBackgroundColor,
               ),
               const Spacer(),

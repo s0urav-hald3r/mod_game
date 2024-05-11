@@ -4,6 +4,7 @@ import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:mod_game/common/widgets/loader.dart';
 import 'package:mod_game/feature/home/controllers/home_controller.dart';
+import 'package:mod_game/feature/home/controllers/page_view_controller.dart';
 import 'package:mod_game/utils/constants/enums.dart';
 import 'package:mod_game/utils/constants/icons.dart';
 import 'package:mod_game/utils/constants/sizes.dart';
@@ -28,12 +29,19 @@ class _HomeViewState extends State<HomeView> {
   void initState() {
     super.initState();
     _homeController = HomeController.instance;
+    makeAPIs();
+  }
+
+  Future<void> makeAPIs() async {
     if (_homeController.mostTrendingMods.isEmpty) {
-      _homeController.getMostTrendingMods();
+      await _homeController.getMostTrendingMods();
     }
+
     if (_homeController.recommendedMods.isEmpty) {
-      _homeController.getRecommendedMods();
+      await _homeController.getRecommendedMods();
     }
+
+    PageViewController.instance.setModsForSlider();
   }
 
   @override
@@ -47,13 +55,15 @@ class _HomeViewState extends State<HomeView> {
                   children: [
                     Gap(XSize.spaceBtwSections.h),
 
-                    // Sliding banners
-                    const SlidingBanner(),
-                    Gap(XSize.spaceBtwItems.h),
+                    if (PageViewController.instance.randomMods.isNotEmpty) ...[
+                      // Sliding banners
+                      const SlidingBanner(),
+                      Gap(XSize.spaceBtwItems.h),
 
-                    // Sliding banners indicator
-                    const SlidingBannerIndicator(),
-                    Gap(XSize.spaceBtwSections.h),
+                      // Sliding banners indicator
+                      const SlidingBannerIndicator(),
+                      Gap(XSize.spaceBtwSections.h),
+                    ],
 
                     // Category Title
                     const CategoryTitle(title: '👾 Categories'),

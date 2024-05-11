@@ -16,7 +16,7 @@ class SlidingBannerIndicator extends StatelessWidget {
 
     return SmoothPageIndicator(
       controller: controller.pageController,
-      count: 5,
+      count: controller.randomMods.length,
       effect: ExpandingDotsEffect(
         activeDotColor: XColor.secondayColor,
         dotColor: XColor.white.withOpacity(.2),

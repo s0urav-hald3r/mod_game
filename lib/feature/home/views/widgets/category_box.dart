@@ -4,29 +4,34 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mod_game/common/styles/right_padding.dart';
+import 'package:mod_game/feature/home/controllers/home_controller.dart';
 import 'package:mod_game/feature/home/views/category_details.dart';
 import 'package:mod_game/utils/constants/sizes.dart';
 
 import '../../../../common/styles/corner_clipper.dart';
 import '../../../../common/styles/corner_painter.dart';
 import '../../../../utils/constants/colors.dart';
+import '../../../../utils/constants/enums.dart';
 import '../../../../utils/helper/navigation.dart';
 
 class CategoryBox extends StatelessWidget {
   final bool isSelect;
   final String icon;
-  final String title;
+  final ModType modType;
   const CategoryBox({
     super.key,
     this.isSelect = false,
     required this.icon,
-    required this.title,
+    required this.modType,
   });
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => Navigation.push(CategoryDetailsView(appBarTitle: title)),
+      onTap: () {
+        HomeController.instance.selectedModType = modType;
+        Navigation.push(CategoryDetailsView(modType: modType));
+      },
       child: RightPadding(
         child: Column(
           children: [
@@ -76,7 +81,7 @@ class CategoryBox extends StatelessWidget {
             ),
             Gap(XSize.spaceBtwItems.h),
             Text(
-              title.toUpperCase(),
+              modType.name.toUpperCase(),
               style: GoogleFonts.quantico(
                 fontWeight: FontWeight.w700,
                 fontSize: 10.sp,

@@ -4,6 +4,7 @@ import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:mod_game/common/widgets/loader.dart';
 import 'package:mod_game/feature/home/controllers/home_controller.dart';
+import 'package:mod_game/utils/constants/enums.dart';
 import 'package:mod_game/utils/constants/icons.dart';
 import 'package:mod_game/utils/constants/sizes.dart';
 
@@ -36,7 +37,7 @@ class _HomeViewState extends State<HomeView> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Obx(
-        () => _homeController.isLoading
+        () => _homeController.isTrendingLoading
             ? const LoadingWidget()
             : SingleChildScrollView(
                 child: Column(
@@ -59,18 +60,32 @@ class _HomeViewState extends State<HomeView> {
                     SingleChildScrollView(
                       scrollDirection: Axis.horizontal,
                       padding: EdgeInsets.only(left: XSize.defaultSpace.w),
-                      child: const Row(
+                      child: Row(
                         children: [
                           CategoryBox(
                             icon: XIcon.slashingIcon,
-                            title: 'Slashing',
-                            isSelect: true,
+                            modType: ModType.SLASHING,
+                            isSelect: _homeController.selectedModType ==
+                                ModType.SLASHING,
                           ),
                           CategoryBox(
-                              icon: XIcon.firearmsIcon, title: 'Firearms'),
+                            icon: XIcon.firearmsIcon,
+                            modType: ModType.FIREARMS,
+                            isSelect: _homeController.selectedModType ==
+                                ModType.FIREARMS,
+                          ),
                           CategoryBox(
-                              icon: XIcon.throwingIcon, title: 'Throwing'),
-                          CategoryBox(icon: XIcon.energyIcon, title: 'Energy'),
+                            icon: XIcon.throwingIcon,
+                            modType: ModType.THROWING,
+                            isSelect: _homeController.selectedModType ==
+                                ModType.THROWING,
+                          ),
+                          CategoryBox(
+                            icon: XIcon.energyIcon,
+                            modType: ModType.ENERGY,
+                            isSelect: _homeController.selectedModType ==
+                                ModType.ENERGY,
+                          ),
                         ],
                       ),
                     ),

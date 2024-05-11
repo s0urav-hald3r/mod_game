@@ -11,7 +11,12 @@ class HomeController extends GetxController {
   //  ---------------------------------* Variable Start *------------------------------
 
   final RxList<Mod> _mostTrendingMods = <Mod>[].obs;
-  final RxBool _isLoading = false.obs;
+  final RxList<Mod> _categoryMods = <Mod>[].obs;
+
+  final RxBool _isTrendingLoading = false.obs;
+  final RxBool _isCategoryLoading = false.obs;
+
+  final Rx<ModType> _selectedModType = ModType.SLASHING.obs;
 
   //  ---------------------------------* Variable End *--------------------------------
 
@@ -20,7 +25,12 @@ class HomeController extends GetxController {
   //  ---------------------------------* Getter Start *--------------------------------
 
   List<Mod> get mostTrendingMods => _mostTrendingMods;
-  bool get isLoading => _isLoading.value;
+  List<Mod> get categoryMods => _categoryMods;
+
+  bool get isTrendingLoading => _isTrendingLoading.value;
+  bool get isCategoryLoading => _isCategoryLoading.value;
+
+  ModType get selectedModType => _selectedModType.value;
 
   //  ---------------------------------* Getter End *----------------------------------
 
@@ -28,8 +38,13 @@ class HomeController extends GetxController {
 
   //  ---------------------------------* Setter Start *--------------------------------
 
-  set mostTrendingMods(List<Mod> mods) => _mostTrendingMods.value = mods;
-  set isLoading(isLoading) => _isLoading.value = isLoading;
+  set mostTrendingMods(mods) => _mostTrendingMods.value = mods;
+  set categoryMods(mods) => _categoryMods.value = mods;
+
+  set isTrendingLoading(loading) => _isTrendingLoading.value = loading;
+  set isCategoryLoading(loading) => _isCategoryLoading.value = loading;
+
+  set selectedModType(loading) => _selectedModType.value = loading;
 
   //  ---------------------------------* Setter End *----------------------------------
 
@@ -39,12 +54,12 @@ class HomeController extends GetxController {
 
   Future<void> getMostTrendingMods() async {
     // Start Loader
-    isLoading = true;
+    isTrendingLoading = true;
 
     // Check internet connection
     final isConnected = await NetworkController.instance.isConnected();
     if (!isConnected) {
-      isLoading = false;
+      isTrendingLoading = false;
       return;
     }
 
@@ -53,7 +68,26 @@ class HomeController extends GetxController {
         .getMods(FormData.fromMap({'category': ModType.TRENDING.title}));
 
     // Stop Loader
-    isLoading = false;
+    isTrendingLoading = false;
+  }
+
+  Future<void> getCategoryMods(ModType modType) async {
+    // Start Loader
+    isCategoryLoading = true;
+
+    // Check internet connection
+    final isConnected = await NetworkController.instance.isConnected();
+    if (!isConnected) {
+      isCategoryLoading = false;
+      return;
+    }
+
+    // API call
+    categoryMods = await HomeRepo.instance
+        .getMods(FormData.fromMap({'category': modType.title}));
+
+    // Stop Loader
+    isCategoryLoading = false;
   }
 
   //  ---------------------------------* Function End *--------------------------------

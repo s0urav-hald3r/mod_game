@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:mod_game/common/styles/horizontal_padding.dart';
 import 'package:mod_game/common/styles/space_with_appbar.dart';
 import 'package:mod_game/common/models/mod.dart';
+import 'package:mod_game/feature/game_details/controllers/game_details_controller.dart';
 import 'package:mod_game/feature/home/controllers/home_controller.dart';
 import 'package:mod_game/feature/home/views/widgets/category_title.dart';
 import 'package:mod_game/utils/constants/sizes.dart';
@@ -112,41 +113,45 @@ class GameDetailsView extends StatelessWidget {
                       ),
                     ),
                   ),
-                  CustomPaint(
-                    painter: CornerPainter(
-                      color: XColor.deepYellow.withOpacity(.3),
-                      stroke: 0.5.sp,
-                      vPoint: 40,
-                      hPoint: 90,
-                    ),
-                    child: ClipPath(
-                      clipper: CornerClipper(vPoint: 40, hPoint: 90),
-                      child: Container(
-                        width: 157.w,
-                        height: 40.h,
-                        color: XColor.black.withOpacity(.6),
-                        child: Center(
-                          child: CustomPaint(
-                            painter: CornerPainter(
-                              color: XColor.deepYellow.withOpacity(.3),
-                              stroke: 0.5.sp,
-                              vPoint: 43,
-                              hPoint: 91,
-                            ),
-                            child: ClipPath(
-                              clipper: CornerClipper(vPoint: 43, hPoint: 91),
-                              child: Container(
-                                width: 148.w,
-                                height: 30.h,
-                                color: XColor.deepYellow,
-                                child: Center(
-                                  child: Text(
-                                    'Download'.toUpperCase(),
-                                    style: GoogleFonts.quantico(
-                                        fontWeight: FontWeight.w700,
-                                        fontSize: 12.sp,
-                                        letterSpacing: 2.sp,
-                                        color: XColor.black),
+                  InkWell(
+                    onTap: () =>
+                        GameDetailsController.instance.downloadMod(mod),
+                    child: CustomPaint(
+                      painter: CornerPainter(
+                        color: XColor.deepYellow.withOpacity(.3),
+                        stroke: 0.5.sp,
+                        vPoint: 40,
+                        hPoint: 90,
+                      ),
+                      child: ClipPath(
+                        clipper: CornerClipper(vPoint: 40, hPoint: 90),
+                        child: Container(
+                          width: 157.w,
+                          height: 40.h,
+                          color: XColor.black.withOpacity(.6),
+                          child: Center(
+                            child: CustomPaint(
+                              painter: CornerPainter(
+                                color: XColor.deepYellow.withOpacity(.3),
+                                stroke: 0.5.sp,
+                                vPoint: 43,
+                                hPoint: 91,
+                              ),
+                              child: ClipPath(
+                                clipper: CornerClipper(vPoint: 43, hPoint: 91),
+                                child: Container(
+                                  width: 148.w,
+                                  height: 30.h,
+                                  color: XColor.deepYellow,
+                                  child: Center(
+                                    child: Text(
+                                      'Download'.toUpperCase(),
+                                      style: GoogleFonts.quantico(
+                                          fontWeight: FontWeight.w700,
+                                          fontSize: 12.sp,
+                                          letterSpacing: 2.sp,
+                                          color: XColor.black),
+                                    ),
                                   ),
                                 ),
                               ),

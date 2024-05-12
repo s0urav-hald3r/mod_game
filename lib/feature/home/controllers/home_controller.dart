@@ -59,6 +59,7 @@ class HomeController extends GetxController {
 
   //  ---------------------------------* Function Start *------------------------------
 
+  // Fetch most trending mods
   Future<void> getMostTrendingMods() async {
     // Start Loader
     isTrendingLoading = true;
@@ -79,6 +80,7 @@ class HomeController extends GetxController {
     isTrendingLoading = false;
   }
 
+  // Fetch recommended mods
   Future<void> getRecommendedMods() async {
     // Start Loader
     isRecommendedLoading = true;
@@ -99,6 +101,7 @@ class HomeController extends GetxController {
     isRecommendedLoading = false;
   }
 
+  // Fetch category wise mods
   Future<void> getCategoryMods(ModType modType) async {
     // Start Loader
     isCategoryLoading = true;

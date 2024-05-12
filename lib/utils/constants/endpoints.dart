@@ -3,5 +3,9 @@ class XEndpoint {
 
   static String baseUrl = "https://loadingpleasewait.online/MelonMods/";
 
+  // Get mods
   static String getMods = "GetMods.php";
+
+  // Download mods
+  static String downloadMod = "UpdateDownload.php";
 }

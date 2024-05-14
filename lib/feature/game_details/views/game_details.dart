@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mod_game/common/styles/horizontal_padding.dart';
 import 'package:mod_game/common/styles/space_with_appbar.dart';
@@ -25,6 +26,8 @@ class GameDetailsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = GameDetailsController.instance;
+    controller.isLearnMoreClicked = false;
+
     final repo = GameDetailsRepo.instance;
 
     return Scaffold(
@@ -56,13 +59,17 @@ class GameDetailsView extends StatelessWidget {
                   Gap(XSize.spaceBtwItems.h),
 
                   // Game's description
-                  Text(
-                    mod.description ?? '',
-                    style: GoogleFonts.raleway(
-                        fontWeight: FontWeight.w400,
-                        fontSize: 10.sp,
-                        letterSpacing: .5,
-                        color: XColor.lightYellow),
+                  Obx(
+                    () => Text(
+                      controller.isLearnMoreClicked
+                          ? (mod.description ?? '')
+                          : (mod.description ?? '').split('\n').first,
+                      style: GoogleFonts.raleway(
+                          fontWeight: FontWeight.w400,
+                          fontSize: 10.sp,
+                          letterSpacing: .5,
+                          color: XColor.lightYellow),
+                    ),
                   ),
                 ],
               ),
@@ -73,41 +80,44 @@ class GameDetailsView extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  CustomPaint(
-                    painter: CornerPainter(
-                      color: XColor.deepYellow.withOpacity(.3),
-                      stroke: 0.5.sp,
-                      vPoint: 40,
-                      hPoint: 90,
-                    ),
-                    child: ClipPath(
-                      clipper: CornerClipper(vPoint: 40, hPoint: 90),
-                      child: Container(
-                        width: 157.w,
-                        height: 40.h,
-                        color: XColor.black.withOpacity(.6),
-                        child: Center(
-                          child: CustomPaint(
-                            painter: CornerPainter(
-                              color: XColor.deepYellow.withOpacity(.3),
-                              stroke: 0.5.sp,
-                              vPoint: 43,
-                              hPoint: 91,
-                            ),
-                            child: ClipPath(
-                              clipper: CornerClipper(vPoint: 43, hPoint: 91),
-                              child: Container(
-                                width: 148.w,
-                                height: 30.h,
-                                color: XColor.black.withOpacity(.2),
-                                child: Center(
-                                  child: Text(
-                                    'Learn More'.toUpperCase(),
-                                    style: GoogleFonts.quantico(
-                                        fontWeight: FontWeight.w700,
-                                        fontSize: 12.sp,
-                                        letterSpacing: 2.sp,
-                                        color: XColor.deepYellow),
+                  InkWell(
+                    onTap: () => controller.isLearnMoreClicked = true,
+                    child: CustomPaint(
+                      painter: CornerPainter(
+                        color: XColor.deepYellow.withOpacity(.3),
+                        stroke: 0.5.sp,
+                        vPoint: 40,
+                        hPoint: 90,
+                      ),
+                      child: ClipPath(
+                        clipper: CornerClipper(vPoint: 40, hPoint: 90),
+                        child: Container(
+                          width: 157.w,
+                          height: 40.h,
+                          color: XColor.black.withOpacity(.6),
+                          child: Center(
+                            child: CustomPaint(
+                              painter: CornerPainter(
+                                color: XColor.deepYellow.withOpacity(.3),
+                                stroke: 0.5.sp,
+                                vPoint: 43,
+                                hPoint: 91,
+                              ),
+                              child: ClipPath(
+                                clipper: CornerClipper(vPoint: 43, hPoint: 91),
+                                child: Container(
+                                  width: 148.w,
+                                  height: 30.h,
+                                  color: XColor.black.withOpacity(.2),
+                                  child: Center(
+                                    child: Text(
+                                      'Learn More'.toUpperCase(),
+                                      style: GoogleFonts.quantico(
+                                          fontWeight: FontWeight.w700,
+                                          fontSize: 12.sp,
+                                          letterSpacing: 2.sp,
+                                          color: XColor.deepYellow),
+                                    ),
                                   ),
                                 ),
                               ),

@@ -7,6 +7,32 @@ import 'package:mod_game/data/repositorys/game_details_repo.dart';
 class GameDetailsController extends GetxController {
   static GameDetailsController get instance => Get.find();
 
+  //  ---------------------------------* Variables Start *-----------------------------
+
+  final RxBool _isLearnMoreClicked = false.obs;
+
+  //  ---------------------------------* Variables End *-------------------------------
+
+  //  ---------------------------------------------------------------------------------
+
+  //  ---------------------------------* Getter Start *--------------------------------
+
+  bool get isLearnMoreClicked => _isLearnMoreClicked.value;
+
+  //  ---------------------------------* Getter End *----------------------------------
+
+  //  ---------------------------------------------------------------------------------
+
+  //  ---------------------------------* Setter Start *--------------------------------
+
+  set isLearnMoreClicked(loading) => _isLearnMoreClicked.value = loading;
+
+  //  ---------------------------------* Setter End *----------------------------------
+
+  //  ---------------------------------------------------------------------------------
+
+  //  ---------------------------------* Function Start *------------------------------
+
   // Download a mod
   Future<void> downloadModToStorage() async {
     // Start Loader
@@ -26,4 +52,6 @@ class GameDetailsController extends GetxController {
     // Stop Loader
     XLoader.hide();
   }
+
+  //  ---------------------------------* Function End *--------------------------------
 }

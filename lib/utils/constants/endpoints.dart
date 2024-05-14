@@ -6,6 +6,6 @@ class XEndpoint {
   // Get mods
   static String getMods = "GetMods.php";
 
-  // Download mods
-  static String downloadMod = "UpdateDownload.php";
+  // updateDownloadCount mods
+  static String updateDownloadCount = "UpdateDownload.php";
 }

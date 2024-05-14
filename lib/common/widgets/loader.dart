@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:mod_game/utils/constants/colors.dart';
 import 'package:mod_game/utils/constants/images.dart';
+import 'package:mod_game/utils/helper/navigation.dart';
 
 class XLoader {
   XLoader._();
@@ -16,7 +17,7 @@ class XLoader {
   }
 
   static hide() {
-    Get.back();
+    Navigation.pop();
   }
 }
 

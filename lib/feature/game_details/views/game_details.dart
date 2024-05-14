@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:mod_game/common/styles/horizontal_padding.dart';
 import 'package:mod_game/common/styles/space_with_appbar.dart';
 import 'package:mod_game/common/models/mod.dart';
+import 'package:mod_game/data/repositorys/game_details_repo.dart';
 import 'package:mod_game/feature/game_details/controllers/game_details_controller.dart';
 import 'package:mod_game/feature/home/controllers/home_controller.dart';
 import 'package:mod_game/feature/home/views/widgets/category_title.dart';
@@ -23,6 +24,9 @@ class GameDetailsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = GameDetailsController.instance;
+    final repo = GameDetailsRepo.instance;
+
     return Scaffold(
       appBar: CustomAppBarBack(title: mod.title!),
       body: SingleChildScrollView(
@@ -30,7 +34,7 @@ class GameDetailsView extends StatelessWidget {
           children: [
             // Game's thumbnail
             Image.network(
-              mod.image,
+              mod.image!,
               fit: BoxFit.cover,
               width: double.infinity,
               height: 180.h,
@@ -114,8 +118,10 @@ class GameDetailsView extends StatelessWidget {
                     ),
                   ),
                   InkWell(
-                    onTap: () =>
-                        GameDetailsController.instance.downloadMod(mod),
+                    onTap: () {
+                      repo.mod.value = mod;
+                      controller.downloadMod();
+                    },
                     child: CustomPaint(
                       painter: CornerPainter(
                         color: XColor.deepYellow.withOpacity(.3),

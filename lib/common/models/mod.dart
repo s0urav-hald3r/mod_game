@@ -1,21 +1,21 @@
 class Mod {
   Mod({
-    required this.id,
-    required this.title,
-    required this.description,
-    required this.image,
-    required this.category,
-    required this.file,
-    required this.downloads,
+    this.id,
+    this.title,
+    this.description,
+    this.image,
+    this.category,
+    this.file,
+    this.downloads,
   });
 
   final String? id;
   final String? title;
   final String? description;
-  final String image;
+  final String? image;
   final String? category;
   final String? file;
-  final String downloads;
+  final String? downloads;
 
   Mod copyWith({
     String? id,

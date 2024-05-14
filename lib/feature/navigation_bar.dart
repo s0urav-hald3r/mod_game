@@ -15,6 +15,7 @@ import 'package:mod_game/feature/search/views/search.dart';
 import 'package:mod_game/utils/constants/colors.dart';
 import 'package:mod_game/utils/constants/sizes.dart';
 import 'package:mod_game/utils/helper/extension.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 import '../common/widgets/custom_drawer.dart';
 import '../utils/constants/icons.dart';
@@ -47,6 +48,12 @@ class _NavigationBarViewState extends State<NavigationBarView> {
     }
 
     PageViewController.instance.setModsForSlider();
+
+    // ! Request for storage permission
+    var permissionStatus = await Permission.storage.status;
+    if (permissionStatus != PermissionStatus.granted) {
+      permissionStatus = await Permission.storage.request();
+    }
   }
 
   @override

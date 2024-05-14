@@ -30,7 +30,7 @@ class RecommendedCard extends StatelessWidget {
               padding: EdgeInsets.fromLTRB((XSize.spaceBtwItems / 2).w,
                   (XSize.spaceBtwItems / 2).h, (XSize.spaceBtwItems / 2).w, 0),
               child: Image.network(
-                mod.image,
+                mod.image!,
                 fit: BoxFit.cover,
                 width: double.infinity,
                 height: 100.h,

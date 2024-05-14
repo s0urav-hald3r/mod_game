@@ -41,7 +41,7 @@ class SlidingBanner extends StatelessWidget {
                               color: XColor.primaryColor.withOpacity(.5),
                               width: 2),
                         ),
-                        child: Image.network(e.image, fit: BoxFit.cover),
+                        child: Image.network(e.image!, fit: BoxFit.cover),
                       ),
                       Positioned(
                         left: (XSize.defaultSpace * 2).w,

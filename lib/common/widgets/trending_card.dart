@@ -32,7 +32,7 @@ class TrendingCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Image.network(
-                mod.image,
+                mod.image!,
                 fit: BoxFit.cover,
                 width: double.infinity,
                 height: 130.h,

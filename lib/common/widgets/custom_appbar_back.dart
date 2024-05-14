@@ -8,7 +8,7 @@ import 'package:mod_game/utils/helper/navigation.dart';
 import '../../utils/constants/colors.dart';
 import '../../utils/constants/sizes.dart';
 import '../styles/left_padding.dart';
-import '../styles/right_padding.dart';
+// import '../styles/right_padding.dart';
 
 class CustomAppBarBack extends StatelessWidget implements PreferredSizeWidget {
   final String title;
@@ -42,12 +42,12 @@ class CustomAppBarBack extends StatelessWidget implements PreferredSizeWidget {
       ),
 
       // Tailing
-      actions: [
-        RightPadding(
-          child:
-              SvgPicture.asset(XIcon.wishlistIcon, height: 24.sp, width: 24.sp),
-        ),
-      ],
+      // actions: [
+      //   RightPadding(
+      //     child:
+      //         SvgPicture.asset(XIcon.wishlistIcon, height: 24.sp, width: 24.sp),
+      //   ),
+      // ],
     );
   }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
@@ -36,11 +37,27 @@ class GameDetailsView extends StatelessWidget {
         child: Column(
           children: [
             // Game's thumbnail
-            Image.network(
-              mod.image!,
-              fit: BoxFit.cover,
-              width: double.infinity,
-              height: 180.h,
+            Stack(
+              children: [
+                Image.network(
+                  mod.image!,
+                  fit: BoxFit.cover,
+                  width: double.infinity,
+                  height: 180.h,
+                ),
+                Positioned(
+                  right: XSize.spaceBtwItems.w,
+                  top: XSize.spaceBtwItems.h,
+                  child: IconButton(
+                    onPressed: () {},
+                    icon: Icon(
+                      Icons.favorite_rounded,
+                      color: Colors.white60,
+                      size: 26.sp,
+                    ),
+                  ),
+                ),
+              ],
             ),
 
             // Gam's title

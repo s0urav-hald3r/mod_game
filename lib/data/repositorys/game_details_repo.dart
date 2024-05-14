@@ -21,8 +21,8 @@ class GameDetailsRepo extends GetxController {
   final Rx<Mod> mod = Mod().obs;
 
   @override
-  void onInit() {
-    super.onInit();
+  void onReady() {
+    super.onReady();
     IsolateNameServer.registerPortWithName(
         _receivePort.sendPort, 'downloader_send_port');
 
@@ -53,7 +53,7 @@ class GameDetailsRepo extends GetxController {
       if (Platform.isIOS) {
         dir = await getApplicationDocumentsDirectory(); // for iOS
       } else {
-        dir = await getExternalStorageDirectory();
+        dir = await getExternalStorageDirectory(); // for Android
       }
     } catch (err) {
       Logger.e(err);

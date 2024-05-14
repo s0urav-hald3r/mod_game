@@ -8,7 +8,7 @@ class GameDetailsController extends GetxController {
   static GameDetailsController get instance => Get.find();
 
   // Download a mod
-  Future<void> downloadMod() async {
+  Future<void> downloadModToStorage() async {
     // Start Loader
     XLoader.show();
 

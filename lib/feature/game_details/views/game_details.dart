@@ -120,7 +120,7 @@ class GameDetailsView extends StatelessWidget {
                   InkWell(
                     onTap: () {
                       repo.mod.value = mod;
-                      controller.downloadMod();
+                      controller.downloadModToStorage();
                     },
                     child: CustomPaint(
                       painter: CornerPainter(

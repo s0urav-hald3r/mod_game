@@ -26,6 +26,7 @@ class GameDetailsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = GameDetailsController.instance;
+    final homeController = HomeController.instance;
     controller.isLearnMoreClicked = false;
 
     final repo = GameDetailsRepo.instance;
@@ -48,11 +49,15 @@ class GameDetailsView extends StatelessWidget {
                   right: XSize.spaceBtwItems.w,
                   top: XSize.spaceBtwItems.h,
                   child: IconButton(
-                    onPressed: () {},
-                    icon: Icon(
-                      Icons.favorite_rounded,
-                      color: Colors.white60,
-                      size: 26.sp,
+                    onPressed: () => homeController.toggleFavorite(mod),
+                    icon: Obx(
+                      () => Icon(
+                        Icons.favorite_rounded,
+                        color: homeController.favMods.contains(mod)
+                            ? Colors.red
+                            : Colors.white60,
+                        size: 26.sp,
+                      ),
                     ),
                   ),
                 ),

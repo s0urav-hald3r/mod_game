@@ -4,7 +4,9 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mod_game/common/controllers/navigation_bar_controller.dart';
+import 'package:mod_game/feature/favourite/views/favourite.dart';
 import 'package:mod_game/utils/constants/icons.dart';
+import 'package:mod_game/utils/helper/navigation.dart';
 
 import '../../utils/constants/colors.dart';
 import '../../utils/constants/sizes.dart';
@@ -61,9 +63,12 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
 
       // Tailing
       actions: [
-        RightPadding(
-          child:
-              SvgPicture.asset(XIcon.wishlistIcon, height: 24.sp, width: 24.sp),
+        InkWell(
+          onTap: () => Navigation.push(const FavouriteView()),
+          child: RightPadding(
+            child: SvgPicture.asset(XIcon.wishlistIcon,
+                height: 24.sp, width: 24.sp),
+          ),
         ),
         RightPadding(
           child: SvgPicture.asset(XIcon.prizeIcon, height: 24.sp, width: 24.sp),

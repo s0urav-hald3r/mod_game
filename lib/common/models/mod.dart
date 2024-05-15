@@ -50,6 +50,19 @@ class Mod {
     );
   }
 
+  // Convert Mod object to JSON
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'title': title,
+      'description': description,
+      'image': image,
+      'category': category,
+      'file': file,
+      'downloads': downloads,
+    };
+  }
+
   @override
   String toString() {
     return "$id, $title, $description, $image, $category, $file, $downloads";

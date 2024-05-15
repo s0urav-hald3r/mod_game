@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mod_game/common/models/mod.dart';
 import 'package:mod_game/feature/game_details/views/game_details.dart';
+import 'package:mod_game/feature/home/controllers/home_controller.dart';
 import 'package:mod_game/utils/helper/navigation.dart';
 
 import '../styles/corner_clipper.dart';
@@ -17,6 +19,8 @@ class TrendingCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final homeController = HomeController.instance;
+
     return Stack(
       children: [
         Container(
@@ -107,11 +111,17 @@ class TrendingCard extends StatelessWidget {
         Positioned(
           right: XSize.defaultSpace.w,
           child: IconButton(
-            onPressed: () {},
-            icon: Icon(
-              Icons.favorite_rounded,
-              color: Colors.white60,
-              size: 26.sp,
+            onPressed: () {
+              homeController.toggleFavorite(mod);
+            },
+            icon: Obx(
+              () => Icon(
+                Icons.favorite_rounded,
+                color: homeController.favMods.contains(mod)
+                    ? Colors.red
+                    : Colors.white60,
+                size: 26.sp,
+              ),
             ),
           ),
         )

@@ -4,7 +4,6 @@ import 'package:flutter_downloader/flutter_downloader.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:mod_game/app.dart';
-import 'package:mod_game/utils/constants/storage_constants.dart';
 
 Future<void> main() async {
 // ! Add Widgets Binding
@@ -14,8 +13,7 @@ Future<void> main() async {
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
 
 // ! Init Local Storage
-  await GetStorage.init(XStorageConstant.softStorage);
-  await GetStorage.init(XStorageConstant.hardStorage);
+  await GetStorage.init();
 
 // ! Fixed Portrait Orientation
   await SystemChrome.setPreferredOrientations([

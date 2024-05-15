@@ -33,6 +33,8 @@ class PageViewController extends GetxController {
       ...HomeController.instance.recommendedMods
     ];
 
+    if (items.isEmpty) return;
+
     for (var i = 0; i < 5; i++) {
       var index = Random().nextInt(items.length);
       _randomMods.add(items[index]);

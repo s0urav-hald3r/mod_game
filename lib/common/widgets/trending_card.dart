@@ -117,9 +117,10 @@ class TrendingCard extends StatelessWidget {
             icon: Obx(
               () => Icon(
                 Icons.favorite_rounded,
-                color: homeController.favMods.contains(mod)
-                    ? Colors.red
-                    : Colors.white60,
+                color:
+                    homeController.favMods.any((favMod) => favMod.id == mod.id)
+                        ? Colors.red
+                        : Colors.white60,
                 size: 26.sp,
               ),
             ),

@@ -81,14 +81,15 @@ class GameDetailsRepo extends GetxController {
     final isPermissionStatusGranted = await _requestStoragePermission();
     if (isPermissionStatusGranted) {
       await FlutterDownloader.enqueue(
-          url: mod.value.file!,
-          savedDir: externalPath!.path,
-          fileName: mod.value.title,
-          showNotification:
-              true, // show download progress in status bar (for Android)
-          openFileFromNotification:
-              true // click on notification to open downloaded file (for Android)
-          );
+        url: mod.value.file!,
+        savedDir: externalPath!.path,
+        fileName: mod.value.title,
+        showNotification:
+            true, // show download progress in status bar (for Android)
+        openFileFromNotification:
+            true, // click on notification to open downloaded file (for Android)
+        saveInPublicStorage: true, // save the mod in the downloads directory
+      );
     }
   }
 

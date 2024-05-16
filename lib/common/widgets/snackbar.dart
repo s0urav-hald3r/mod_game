@@ -23,19 +23,17 @@ class XSnackBar {
         break;
       default:
     }
-    Get.snackbar(
-      '',
-      '',
-      titleText: Text(
-        title,
-        style: GoogleFonts.quantico(
-            fontSize: 16.sp, color: textColor, fontWeight: FontWeight.bold),
-      ),
-      messageText: Text(
-        message,
-        style: GoogleFonts.quantico(fontSize: 14.sp, color: textColor),
-      ),
-      backgroundColor: bgColor,
-    );
+    Get.snackbar('', '',
+        titleText: Text(
+          title,
+          style: GoogleFonts.quantico(
+              fontSize: 16.sp, color: textColor, fontWeight: FontWeight.bold),
+        ),
+        messageText: Text(
+          message,
+          style: GoogleFonts.quantico(fontSize: 14.sp, color: textColor),
+        ),
+        backgroundColor: bgColor,
+        snackPosition: SnackPosition.BOTTOM);
   }
 }

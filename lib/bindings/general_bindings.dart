@@ -4,6 +4,7 @@ import 'package:mod_game/common/controllers/network_controller.dart';
 import 'package:mod_game/data/repositorys/game_details_repo.dart';
 import 'package:mod_game/data/repositorys/home_repo.dart';
 import 'package:mod_game/feature/community/controllers/community_controller.dart';
+import 'package:mod_game/feature/download/controller/download_controller.dart';
 import 'package:mod_game/feature/game_details/controllers/game_details_controller.dart';
 import 'package:mod_game/feature/home/controllers/home_controller.dart';
 import 'package:mod_game/feature/home/controllers/page_view_controller.dart';
@@ -28,6 +29,9 @@ class GeneralBindings extends Bindings {
 
     // Community page controllers
     Get.lazyPut(() => CommunityController());
+
+    // Download page controllers
+    Get.lazyPut(() => DownloadController());
 
     // Game details page controllers
     Get.lazyPut(() => GameDetailsController());

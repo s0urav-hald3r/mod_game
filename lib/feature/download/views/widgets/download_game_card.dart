@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:mod_game/common/models/mod.dart';
 
 import '../../../../utils/constants/colors.dart';
 import '../../../../utils/constants/sizes.dart';
 
 class DownloadGameCard extends StatelessWidget {
-  const DownloadGameCard({
-    super.key,
-  });
+  final Mod mod;
+  const DownloadGameCard({super.key, required this.mod});
 
   @override
   Widget build(BuildContext context) {
@@ -24,9 +24,10 @@ class DownloadGameCard extends StatelessWidget {
           Padding(
             padding: EdgeInsets.fromLTRB((XSize.spaceBtwItems / 4).w,
                 (XSize.spaceBtwItems / 4).h, (XSize.spaceBtwItems / 4).w, 0),
-            child: Image.asset(
-              'assets/images/banner_2.png',
+            child: Image.network(
+              mod.image!,
               fit: BoxFit.cover,
+              width: double.infinity,
               height: 80.h,
             ),
           ),
@@ -35,7 +36,7 @@ class DownloadGameCard extends StatelessWidget {
             padding:
                 EdgeInsets.symmetric(horizontal: (XSize.spaceBtwItems / 2).w),
             child: Text(
-              'Ultimate One Piece'.toUpperCase(),
+              mod.title!.toUpperCase(),
               style: GoogleFonts.quantico(
                   fontSize: 8.sp, fontWeight: FontWeight.w700),
             ),

@@ -1,10 +1,15 @@
+import 'dart:async';
+import 'dart:convert';
 import 'dart:io';
 import 'dart:isolate';
 import 'dart:ui';
 
+import 'package:dio/dio.dart';
 import 'package:flutter_downloader/flutter_downloader.dart';
-import 'package:get/get.dart' hide Response;
+import 'package:get/get.dart' hide Response, FormData;
 import 'package:mod_game/common/models/mod.dart';
+import 'package:mod_game/common/widgets/snackbar.dart';
+import 'package:mod_game/feature/download/controller/download_controller.dart';
 import 'package:mod_game/utils/constants/endpoints.dart';
 import 'package:mod_game/utils/logger/logger.dart';
 import 'package:path_provider/path_provider.dart';
@@ -16,26 +21,63 @@ class GameDetailsRepo extends GetxController {
   static GameDetailsRepo get instance => Get.find();
   final DioClient _dioClient = DioClient();
 
-  final ReceivePort _receivePort = ReceivePort();
+  late ReceivePort receivePort;
+  Timer? _debounceTimer;
 
   final Rx<Mod> mod = Mod().obs;
+
+  final controller = DownloadController.instance;
+
+  @override
+  void onInit() {
+    super.onInit();
+
+    // Initializee receive port
+    receivePort = ReceivePort();
+  }
 
   @override
   void onReady() {
     super.onReady();
-    IsolateNameServer.registerPortWithName(
-        _receivePort.sendPort, 'downloader_send_port');
 
-    _receivePort.listen((dynamic data) {
-      if (data[1] == 3) updateDownloadCount({'id': mod.value.id});
+    // Register the send port with a unique name
+    IsolateNameServer.registerPortWithName(
+        receivePort.sendPort, 'downloader_send_port');
+
+    // Listen for data from the isolate
+    receivePort.listen((dynamic data) {
+      if (data == 3) {
+        // Cancel the previous timer if it is still active
+        _debounceTimer?.cancel();
+
+        // Start a new timer
+        _debounceTimer = Timer(const Duration(seconds: 1), () {
+          updateDownloadCount(FormData.fromMap({'id': mod.value.id}));
+        });
+        return;
+      }
+
+      if (data == 4) {
+        XSnackBar.show('Failed', '${mod.value.title} downloaded failed.', 2);
+        return;
+      }
+
+      if (data == 5) {
+        XSnackBar.show(
+            'Canceled', '${mod.value.title} downloaded canceled.', 2);
+        return;
+      }
     });
 
+    // Register the callback for FlutterDownloader
     FlutterDownloader.registerCallback(downloadCallback);
   }
 
   @override
   void dispose() {
+    // Remove the port name mapping when disposing
     IsolateNameServer.removePortNameMapping('downloader_send_port');
+    _debounceTimer?.cancel();
     super.dispose();
   }
 
@@ -43,7 +85,9 @@ class GameDetailsRepo extends GetxController {
   static void downloadCallback(String id, int status, int progress) {
     final SendPort? sendPort =
         IsolateNameServer.lookupPortByName('downloader_send_port');
-    sendPort?.send([id, status, progress]);
+    if (sendPort != null) {
+      sendPort.send(status);
+    }
   }
 
   // Get the external storage path
@@ -73,7 +117,14 @@ class GameDetailsRepo extends GetxController {
   //  ---------------------------------* Function Start *------------------------------
 
   Future<void> updateDownloadCount(dynamic body) async {
-    await _dioClient.post(XEndpoint.updateDownloadCount, body: body);
+    Response response =
+        await _dioClient.post(XEndpoint.updateDownloadCount, body: body);
+    var jsondata = json.decode(response.data);
+    if (jsondata['success']) {
+      XSnackBar.show(
+          'Successful', '${mod.value.title} downloaded successfully.', 0);
+      controller.addNewDownloadedMod(mod.value);
+    }
   }
 
   Future<void> downloadMod() async {

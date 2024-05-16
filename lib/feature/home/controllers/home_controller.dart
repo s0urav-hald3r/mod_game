@@ -6,12 +6,15 @@ import 'package:mod_game/common/controllers/network_controller.dart';
 import 'package:mod_game/common/models/mod.dart';
 import 'package:mod_game/common/widgets/snackbar.dart';
 import 'package:mod_game/data/repositorys/home_repo.dart';
+import 'package:mod_game/feature/download/controller/download_controller.dart';
 import 'package:mod_game/utils/constants/enums.dart';
 import 'package:mod_game/utils/constants/storage_constants.dart';
 import 'package:mod_game/utils/local_storage/local_storage.dart';
 
 class HomeController extends GetxController {
   static HomeController get instance => Get.find();
+
+  final downloadController = DownloadController.instance;
 
   @override
   void onReady() {
@@ -138,6 +141,8 @@ class HomeController extends GetxController {
     mostTrendingMods = await HomeRepo.instance
         .getMods(FormData.fromMap({'category': ModType.TRENDING.title}));
 
+    downloadController.filterDownloadedMods(mostTrendingMods);
+
     // Stop Loader
     isTrendingLoading = false;
   }
@@ -159,6 +164,8 @@ class HomeController extends GetxController {
     recommendedMods = await HomeRepo.instance
         .getMods(FormData.fromMap({'category': ModType.RECOMMENDED.title}));
 
+    downloadController.filterDownloadedMods(recommendedMods);
+
     // Stop Loader
     isRecommendedLoading = false;
   }
@@ -179,6 +186,8 @@ class HomeController extends GetxController {
     // API call
     categoryMods = await HomeRepo.instance
         .getMods(FormData.fromMap({'category': modType.title}));
+
+    downloadController.filterDownloadedMods(categoryMods);
 
     // Stop Loader
     isCategoryLoading = false;

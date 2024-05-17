@@ -5,6 +5,7 @@ import 'package:mod_game/data/repositorys/game_details_repo.dart';
 import 'package:mod_game/data/repositorys/home_repo.dart';
 import 'package:mod_game/feature/community/controllers/community_controller.dart';
 import 'package:mod_game/feature/download/controller/download_controller.dart';
+import 'package:mod_game/feature/drawer/controllers/drawer_controller.dart';
 import 'package:mod_game/feature/game_details/controllers/game_details_controller.dart';
 import 'package:mod_game/feature/home/controllers/home_controller.dart';
 import 'package:mod_game/feature/home/controllers/page_view_controller.dart';
@@ -18,6 +19,9 @@ class GeneralBindings extends Bindings {
 
     // To change screen via bottom navigation bar
     Get.lazyPut(() => NavigationBarController());
+
+    // Drawer controller
+    Get.lazyPut(() => CustomDrawerController());
 
     // Home page controllers
     Get.lazyPut(() => PageViewController());

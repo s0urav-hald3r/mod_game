@@ -1,8 +1,9 @@
 class XAppConstant {
   XAppConstant._(); // restrict unwanted instance creation
 
-  // App nme
+  // App constant
   static String appName = '';
+  static String supportMail = 'sourav.halder@stacklab.in';
 
   // Dio client constant
   static String jwtToken = 'jwtToken';

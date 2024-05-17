@@ -59,6 +59,7 @@ dependencies:
   flutter_svg: ^2.0.0
   smooth_page_indicator: ^1.1.0
   connectivity_plus: ^5.0.2
+  url_launcher: ^6.2.6
 
 dev_dependencies:
   flutter_test:

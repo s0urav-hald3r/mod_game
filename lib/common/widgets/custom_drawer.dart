@@ -3,7 +3,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:mod_game/feature/drawer/views/report_bug.dart';
 import 'package:mod_game/utils/helper/extension.dart';
+import 'package:mod_game/utils/helper/navigation.dart';
 
 import '../../utils/constants/colors.dart';
 import '../styles/space_with_appbar.dart';
@@ -37,7 +39,9 @@ class CustomDrawer extends StatelessWidget {
             const Divider(),
             _menuItem('language', () {}),
             const Divider(),
-            _menuItem('report bug', () {}),
+            _menuItem('report bug', () {
+              Navigation.push(const ReportBugView());
+            }),
             const Divider(),
             _menuItem('privacy policy', () {}),
             const Divider(),

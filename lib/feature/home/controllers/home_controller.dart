@@ -7,6 +7,8 @@ import 'package:mod_game/common/models/mod.dart';
 import 'package:mod_game/common/widgets/snackbar.dart';
 import 'package:mod_game/data/repositorys/home_repo.dart';
 import 'package:mod_game/feature/download/controller/download_controller.dart';
+import 'package:mod_game/feature/home/models/category.dart';
+import 'package:mod_game/utils/constants/app_constants.dart';
 import 'package:mod_game/utils/constants/enums.dart';
 import 'package:mod_game/utils/constants/storage_constants.dart';
 import 'package:mod_game/utils/local_storage/local_storage.dart';
@@ -52,11 +54,14 @@ class HomeController extends GetxController {
 
   final RxList<Mod> _favMods = <Mod>[].obs;
 
+  final RxList<Category> _categories = <Category>[].obs;
+
   final RxBool _isTrendingLoading = false.obs;
-  final RxBool _isCategoryLoading = false.obs;
+  final RxBool _isGetCategoryLoading = false.obs;
+  final RxBool _isPostCategoryLoading = false.obs;
   final RxBool _isRecommendedLoading = false.obs;
 
-  final Rx<ModType> _selectedModType = ModType.SLASHING.obs;
+  final Rx<String> _selectedModType = ''.obs;
 
   //  ---------------------------------* Variable End *--------------------------------
 
@@ -69,12 +74,14 @@ class HomeController extends GetxController {
   List<Mod> get recommendedMods => _recommendedMods;
 
   List<Mod> get favMods => _favMods;
+  List<Category> get categories => _categories;
 
   bool get isTrendingLoading => _isTrendingLoading.value;
-  bool get isCategoryLoading => _isCategoryLoading.value;
+  bool get isGetCategoryLoading => _isGetCategoryLoading.value;
+  bool get isPostCategoryLoading => _isPostCategoryLoading.value;
   bool get isRecommendedLoading => _isRecommendedLoading.value;
 
-  ModType get selectedModType => _selectedModType.value;
+  String get selectedModType => _selectedModType.value;
 
   //  ---------------------------------* Getter End *----------------------------------
 
@@ -87,9 +94,11 @@ class HomeController extends GetxController {
   set recommendedMods(mods) => _recommendedMods.value = mods;
 
   set favMods(mods) => _favMods.value = mods;
+  set categories(categories) => _categories.value = categories;
 
   set isTrendingLoading(loading) => _isTrendingLoading.value = loading;
-  set isCategoryLoading(loading) => _isCategoryLoading.value = loading;
+  set isGetCategoryLoading(loading) => _isGetCategoryLoading.value = loading;
+  set isPostCategoryLoading(loading) => _isPostCategoryLoading.value = loading;
   set isRecommendedLoading(loading) => _isRecommendedLoading.value = loading;
 
   set selectedModType(modType) => _selectedModType.value = modType;
@@ -139,7 +148,7 @@ class HomeController extends GetxController {
 
     // API call
     mostTrendingMods = await HomeRepo.instance
-        .getMods(FormData.fromMap({'category': ModType.TRENDING.title}));
+        .getMods(FormData.fromMap({'category': XAppConstant.trending}));
 
     downloadController.filterDownloadedMods(mostTrendingMods);
 
@@ -162,7 +171,7 @@ class HomeController extends GetxController {
 
     // API call
     recommendedMods = await HomeRepo.instance
-        .getMods(FormData.fromMap({'category': ModType.RECOMMENDED.title}));
+        .getMods(FormData.fromMap({'category': XAppConstant.recommended}));
 
     downloadController.filterDownloadedMods(recommendedMods);
 
@@ -171,26 +180,48 @@ class HomeController extends GetxController {
   }
 
   // Fetch category wise mods
-  Future<void> getCategoryMods(ModType modType) async {
+  Future<void> getCategoryMods() async {
     // Start Loader
-    isCategoryLoading = true;
+    isPostCategoryLoading = true;
 
     // Check internet connection
     final isConnected = await NetworkController.instance.isConnected();
     if (!isConnected) {
-      isCategoryLoading = false;
+      isPostCategoryLoading = false;
       XSnackBar.show('Error', 'No internet available', 2);
       return;
     }
 
     // API call
     categoryMods = await HomeRepo.instance
-        .getMods(FormData.fromMap({'category': modType.title}));
+        .getMods(FormData.fromMap({'category': selectedModType}));
 
     downloadController.filterDownloadedMods(categoryMods);
 
     // Stop Loader
-    isCategoryLoading = false;
+    isPostCategoryLoading = false;
+  }
+
+  // Fetch category wise mods
+  Future<void> getCategories() async {
+    // Start Loader
+    isGetCategoryLoading = true;
+
+    // Check internet connection
+    final isConnected = await NetworkController.instance.isConnected();
+    if (!isConnected) {
+      isGetCategoryLoading = false;
+      XSnackBar.show('Error', 'No internet available', 2);
+      return;
+    }
+
+    // API call
+    categories = await HomeRepo.instance.getCategories();
+
+    selectedModType = categories.first.name!;
+
+    // Stop Loader
+    isGetCategoryLoading = false;
   }
 
   //  ---------------------------------* Function End *--------------------------------

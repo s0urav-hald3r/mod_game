@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mod_game/common/styles/right_padding.dart';
@@ -11,26 +10,25 @@ import 'package:mod_game/utils/constants/sizes.dart';
 import '../../../../common/styles/corner_clipper.dart';
 import '../../../../common/styles/corner_painter.dart';
 import '../../../../utils/constants/colors.dart';
-import '../../../../utils/constants/enums.dart';
 import '../../../../utils/helper/navigation.dart';
 
 class CategoryBox extends StatelessWidget {
   final bool isSelect;
   final String icon;
-  final ModType modType;
+  final String name;
   const CategoryBox({
     super.key,
     this.isSelect = false,
     required this.icon,
-    required this.modType,
+    required this.name,
   });
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        HomeController.instance.selectedModType = modType;
-        Navigation.push(CategoryDetailsView(modType: modType));
+        HomeController.instance.selectedModType = name;
+        Navigation.push(const CategoryDetailsView());
       },
       child: RightPadding(
         child: Column(
@@ -69,8 +67,8 @@ class CategoryBox extends StatelessWidget {
                           height: 60.sp,
                           color: XColor.darkerGrey,
                           child: Center(
-                            child: SvgPicture.asset(icon,
-                                height: 24.sp, width: 24.sp),
+                            child: Image.network(icon,
+                                fit: BoxFit.cover, height: 24.sp, width: 24.sp),
                           ),
                         ),
                       ),
@@ -81,7 +79,7 @@ class CategoryBox extends StatelessWidget {
             ),
             Gap(XSize.spaceBtwItems.h),
             Text(
-              modType.name.toUpperCase(),
+              name.toUpperCase(),
               style: GoogleFonts.quantico(
                 fontWeight: FontWeight.w700,
                 fontSize: 10.sp,

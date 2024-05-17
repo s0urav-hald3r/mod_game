@@ -6,7 +6,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:mod_game/common/models/mod.dart';
 import 'package:mod_game/common/styles/space_with_appbar.dart';
 import 'package:mod_game/common/widgets/custom_appbar_back.dart';
-import 'package:mod_game/utils/constants/enums.dart';
 import 'package:mod_game/utils/constants/sizes.dart';
 
 import '../../../common/widgets/loader.dart';
@@ -16,8 +15,7 @@ import '../../../utils/constants/images.dart';
 import '../controllers/home_controller.dart';
 
 class CategoryDetailsView extends StatefulWidget {
-  final ModType modType;
-  const CategoryDetailsView({super.key, required this.modType});
+  const CategoryDetailsView({super.key});
 
   @override
   State<CategoryDetailsView> createState() => _CategoryDetailsViewState();
@@ -30,7 +28,7 @@ class _CategoryDetailsViewState extends State<CategoryDetailsView> {
   void initState() {
     super.initState();
     _homeController = HomeController.instance;
-    _homeController.getCategoryMods(widget.modType);
+    _homeController.getCategoryMods();
   }
 
   @override
@@ -42,9 +40,10 @@ class _CategoryDetailsViewState extends State<CategoryDetailsView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBarBack(title: widget.modType.name.toUpperCase()),
+      appBar: CustomAppBarBack(
+          title: _homeController.selectedModType.toUpperCase()),
       body: Obx(
-        () => _homeController.isCategoryLoading
+        () => _homeController.isPostCategoryLoading
             ? const LoadingWidget()
             : _homeController.categoryMods.isEmpty
                 ? Center(

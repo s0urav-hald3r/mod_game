@@ -5,8 +5,6 @@ import 'package:get/get.dart';
 import 'package:mod_game/common/widgets/loader.dart';
 import 'package:mod_game/feature/home/controllers/home_controller.dart';
 import 'package:mod_game/feature/home/controllers/page_view_controller.dart';
-import 'package:mod_game/utils/constants/enums.dart';
-import 'package:mod_game/utils/constants/icons.dart';
 import 'package:mod_game/utils/constants/sizes.dart';
 
 import 'widgets/category_box.dart';
@@ -29,7 +27,8 @@ class _HomeViewState extends State<HomeView> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Obx(
-        () => _homeController.isTrendingLoading
+        () => _homeController.isTrendingLoading ||
+                _homeController.isGetCategoryLoading
             ? const LoadingWidget()
             : SingleChildScrollView(
                 child: Column(
@@ -46,47 +45,32 @@ class _HomeViewState extends State<HomeView> {
                       Gap(XSize.spaceBtwSections.h),
                     ],
 
-                    // Category Title
-                    const CategoryTitle(title: '👾 Categories'),
-                    Gap(XSize.spaceBtwSections.h),
-
-                    // List of categories
-                    SingleChildScrollView(
-                      scrollDirection: Axis.horizontal,
-                      padding: EdgeInsets.only(left: XSize.defaultSpace.w),
-                      child: Row(
-                        children: [
-                          CategoryBox(
-                            icon: XIcon.slashingIcon,
-                            modType: ModType.SLASHING,
-                            isSelect: _homeController.selectedModType ==
-                                ModType.SLASHING,
-                          ),
-                          CategoryBox(
-                            icon: XIcon.firearmsIcon,
-                            modType: ModType.FIREARMS,
-                            isSelect: _homeController.selectedModType ==
-                                ModType.FIREARMS,
-                          ),
-                          CategoryBox(
-                            icon: XIcon.throwingIcon,
-                            modType: ModType.THROWING,
-                            isSelect: _homeController.selectedModType ==
-                                ModType.THROWING,
-                          ),
-                          CategoryBox(
-                            icon: XIcon.energyIcon,
-                            modType: ModType.ENERGY,
-                            isSelect: _homeController.selectedModType ==
-                                ModType.ENERGY,
-                          ),
-                        ],
-                      ),
-                    ),
-
-                    if (_homeController.mostTrendingMods.isNotEmpty) ...[
+                    if (_homeController.categories.isNotEmpty) ...[
+                      // Category Title
+                      const CategoryTitle(title: '👾 Categories'),
                       Gap(XSize.spaceBtwSections.h),
 
+                      // List of categories
+                      SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        padding: EdgeInsets.only(left: XSize.defaultSpace.w),
+                        child: Row(
+                          children: _homeController.categories
+                              .map(
+                                (e) => CategoryBox(
+                                  icon: e.image!,
+                                  name: e.name!,
+                                  isSelect:
+                                      _homeController.selectedModType == e.name,
+                                ),
+                              )
+                              .toList(),
+                        ),
+                      ),
+                      Gap(XSize.spaceBtwSections.h),
+                    ],
+
+                    if (_homeController.mostTrendingMods.isNotEmpty) ...[
                       // Trending Title
                       const CategoryTitle(title: '🔥 Most Trending'),
                       Gap(XSize.spaceBtwSections.h),

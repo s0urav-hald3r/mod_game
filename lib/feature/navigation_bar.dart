@@ -39,17 +39,25 @@ class _NavigationBarViewState extends State<NavigationBarView> {
   }
 
   Future<void> makeAPIs() async {
+    // API call for most trending mods
     if (_homeController.mostTrendingMods.isEmpty) {
       await _homeController.getMostTrendingMods();
     }
 
+    // API call for categories
+    if (_homeController.categories.isEmpty) {
+      await _homeController.getCategories();
+    }
+
+    // API call for recommended mods
     if (_homeController.recommendedMods.isEmpty) {
       await _homeController.getRecommendedMods();
     }
 
+    // Mods configure for home screen top slidder
     PageViewController.instance.setModsForSlider();
 
-    // ! Request for storage permission
+    // Request for storage permission
     var permissionStatus = await Permission.storage.status;
     if (permissionStatus != PermissionStatus.granted) {
       permissionStatus = await Permission.storage.request();

@@ -2,16 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:mod_game/common/models/mod.dart';
-import 'package:mod_game/common/styles/space_with_appbar.dart';
 import 'package:mod_game/common/widgets/custom_appbar_back.dart';
+import 'package:mod_game/common/widgets/no_data.dart';
 import 'package:mod_game/utils/constants/sizes.dart';
 
 import '../../../common/widgets/loader.dart';
 import '../../../common/widgets/trending_card.dart';
-import '../../../utils/constants/colors.dart';
-import '../../../utils/constants/images.dart';
 import '../controllers/home_controller.dart';
 
 class CategoryDetailsView extends StatefulWidget {
@@ -46,26 +43,7 @@ class _CategoryDetailsViewState extends State<CategoryDetailsView> {
         () => _homeController.isPostCategoryLoading
             ? const LoadingWidget()
             : _homeController.categoryMods.isEmpty
-                ? Center(
-                    child: Padding(
-                      padding: XSpacing.defaultSideSpace,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Image.asset(XImage.noData),
-                          Text(
-                            "No mods available!",
-                            style: GoogleFonts.raleway(
-                                fontWeight: FontWeight.w400,
-                                fontSize: 14.sp,
-                                letterSpacing: .5,
-                                color: XColor.lightYellow),
-                            textAlign: TextAlign.center,
-                          ),
-                        ],
-                      ),
-                    ),
-                  )
+                ? const NoData()
                 : SingleChildScrollView(
                     child: Column(
                       children: [

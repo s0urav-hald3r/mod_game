@@ -8,6 +8,7 @@ import 'package:mod_game/common/controllers/navigation_bar_controller.dart';
 import 'package:mod_game/common/widgets/custom_appbar.dart';
 import 'package:mod_game/feature/community/views/community.dart';
 import 'package:mod_game/feature/download/views/download.dart';
+import 'package:mod_game/feature/drawer/controllers/drawer_controller.dart';
 import 'package:mod_game/feature/home/controllers/home_controller.dart';
 import 'package:mod_game/feature/home/controllers/page_view_controller.dart';
 import 'package:mod_game/feature/home/views/home.dart';
@@ -31,14 +32,21 @@ class _NavigationBarViewState extends State<NavigationBarView> {
   final GlobalKey<ScaffoldState> _key = GlobalKey();
   final controller = NavigationBarController.instance;
   final _homeController = HomeController.instance;
+  final drawerController = CustomDrawerController.instance;
 
   @override
   void initState() {
     super.initState();
-    makeAPIs();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      makeAPIs();
+    });
   }
 
   Future<void> makeAPIs() async {
+    // Change app language
+    drawerController.updateLanguage();
+
     // API call for most trending mods
     if (_homeController.mostTrendingMods.isEmpty) {
       await _homeController.getMostTrendingMods();
@@ -98,31 +106,31 @@ class _NavigationBarViewState extends State<NavigationBarView> {
           width: double.infinity,
           height: 70.h,
           color: XColor.darkerGrey,
-          child: const Row(
+          child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               NavBarItem(
                 icon: XIcon.navHomeIcon,
                 selectedIcon: XIcon.navSelectHomeIcon,
-                title: 'Home',
+                title: 'Home'.tr,
                 index: 0,
               ),
               NavBarItem(
                 icon: XIcon.navSearchIcon,
                 selectedIcon: XIcon.navSelectSearchIcon,
-                title: 'Search',
+                title: 'Search'.tr,
                 index: 1,
               ),
               NavBarItem(
                 icon: XIcon.navCommunityIcon,
                 selectedIcon: XIcon.navSelectCommunityIcon,
-                title: 'Community',
+                title: 'Community'.tr,
                 index: 2,
               ),
               NavBarItem(
                 icon: XIcon.navDownloadIcon,
                 selectedIcon: XIcon.navSelectDownloadIcon,
-                title: 'Download',
+                title: 'Download'.tr,
                 index: 3,
               ),
             ],

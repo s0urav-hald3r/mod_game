@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:mod_game/feature/drawer/views/language.dart';
 import 'package:mod_game/feature/drawer/views/report_bug.dart';
 import 'package:mod_game/utils/helper/extension.dart';
 import 'package:mod_game/utils/helper/navigation.dart';
@@ -37,7 +38,9 @@ class CustomDrawer extends StatelessWidget {
             const Divider(),
             _menuItem('How to use', () {}),
             const Divider(),
-            _menuItem('language', () {}),
+            _menuItem('language', () {
+              Navigation.push(const LanguageView());
+            }),
             const Divider(),
             _menuItem('report bug', () {
               Navigation.push(const ReportBugView());

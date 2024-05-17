@@ -26,13 +26,13 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
         return 'Melon Mods';
 
       case 1:
-        return 'Search';
+        return 'Search'.tr;
 
       case 2:
-        return 'Community';
+        return 'Community'.tr;
 
       case 3:
-        return 'Download';
+        return 'Download'.tr;
     }
   }
 

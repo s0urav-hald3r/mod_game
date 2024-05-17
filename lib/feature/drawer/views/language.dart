@@ -18,7 +18,7 @@ class LanguageView extends StatelessWidget {
     final controller = CustomDrawerController.instance;
 
     return Scaffold(
-      appBar: const CustomAppBarBack(title: 'Language'),
+      appBar: CustomAppBarBack(title: 'language'.tr),
       body: SingleChildScrollView(
         padding: XSpacing.defaultSideSpace,
         child: Column(
@@ -51,7 +51,7 @@ class LanguageView extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  'Hindi',
+                  'हिंदी',
                   style: GoogleFonts.quantico(
                       fontSize: 16.sp,
                       color: XColor.primaryColor,

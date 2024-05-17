@@ -59,7 +59,7 @@ class CommunityView extends StatelessWidget {
                       decoration: InputDecoration(
                         // contentPadding: EdgeInsets.only(bottom: 5.h),
                         isCollapsed: true,
-                        hintText: 'type to search'.toUpperCase(),
+                        hintText: 'type to search'.tr.toUpperCase(),
                         hintStyle: GoogleFonts.quantico(
                             fontSize: 12.sp,
                             color: XColor.white,
@@ -81,7 +81,7 @@ class CommunityView extends StatelessWidget {
               Gap(XSize.spaceBtwSections.h),
 
               // Top recommended
-              const CategoryTitle(title: '👑 Top Recommended'),
+              CategoryTitle(title: '👑 Top Recommended'.tr),
               Gap(XSize.spaceBtwSections.h),
 
               // List of recommended mods
@@ -106,7 +106,7 @@ class CommunityView extends StatelessWidget {
               Gap(XSize.spaceBtwSections.h),
 
               // Trending Title
-              const CategoryTitle(title: '🔥 Most Trending'),
+              CategoryTitle(title: '🔥 Most Trending'.tr),
               Gap(XSize.spaceBtwSections.h),
 
               // List of trending mods

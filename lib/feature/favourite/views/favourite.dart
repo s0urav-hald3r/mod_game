@@ -17,7 +17,7 @@ class FavouriteView extends StatelessWidget {
     final homeController = HomeController.instance;
 
     return Scaffold(
-      appBar: const CustomAppBarBack(title: 'Favourite Mods'),
+      appBar: CustomAppBarBack(title: 'Favourite'.tr),
       body: Obx(
         () => homeController.favMods.isEmpty
             ? const NoData()

@@ -66,7 +66,7 @@ class CustomDrawer extends StatelessWidget {
     return InkWell(
       onTap: () => callBack(),
       child: Text(
-        text.toUpperCase(),
+        text.tr.toUpperCase(),
         style: GoogleFonts.piedra(
             fontSize: 16.sp,
             fontWeight: FontWeight.w400,

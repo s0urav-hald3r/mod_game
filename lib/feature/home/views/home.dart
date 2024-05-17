@@ -47,7 +47,7 @@ class _HomeViewState extends State<HomeView> {
 
                     if (_homeController.categories.isNotEmpty) ...[
                       // Category Title
-                      const CategoryTitle(title: '👾 Categories'),
+                      CategoryTitle(title: '👾 Categories'.tr),
                       Gap(XSize.spaceBtwSections.h),
 
                       // List of categories
@@ -72,7 +72,7 @@ class _HomeViewState extends State<HomeView> {
 
                     if (_homeController.mostTrendingMods.isNotEmpty) ...[
                       // Trending Title
-                      const CategoryTitle(title: '🔥 Most Trending'),
+                      CategoryTitle(title: '🔥 Most Trending'.tr),
                       Gap(XSize.spaceBtwSections.h),
 
                       Column(

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mod_game/common/styles/space_with_appbar.dart';
 import 'package:mod_game/common/widgets/custom_appbar_back.dart';
@@ -30,14 +31,14 @@ class _ReportBugViewState extends State<ReportBugView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const CustomAppBarBack(title: 'Report Bug'),
+      appBar: CustomAppBarBack(title: 'report bug'.tr),
       body: SingleChildScrollView(
         padding: XSpacing.defaultSideSpace,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             // Email field
-            const CustomTitle(title: 'Support email'),
+            CustomTitle(title: 'Support email'.tr),
             Gap(XSize.spaceBtwItems.h),
             CustomTextField(
               controller: controller.email,
@@ -47,14 +48,14 @@ class _ReportBugViewState extends State<ReportBugView> {
             Gap(XSize.spaceBtwSections.h),
 
             // Subject field
-            const CustomTitle(title: 'Subject'),
+            CustomTitle(title: 'Subject'.tr),
             Gap(XSize.spaceBtwItems.h),
             CustomTextField(
                 controller: controller.subject, hintText: 'enter subject here'),
             Gap(XSize.spaceBtwSections.h),
 
             // Description field
-            const CustomTitle(title: 'Description'),
+            CustomTitle(title: 'Description'.tr),
             Gap(XSize.spaceBtwItems.h),
             CustomTextField(
               controller: controller.description,
@@ -99,7 +100,7 @@ class _ReportBugViewState extends State<ReportBugView> {
                                 color: XColor.deepYellow,
                                 child: Center(
                                   child: Text(
-                                    'REport bug'.toUpperCase(),
+                                    'report bug'.tr.toUpperCase(),
                                     style: GoogleFonts.quantico(
                                         fontWeight: FontWeight.w700,
                                         fontSize: 12.sp,
@@ -187,7 +188,7 @@ class CustomTextField extends StatelessWidget {
               horizontal: XSize.spaceBtwItems.w,
               vertical: XSize.spaceBtwItems.h),
           isCollapsed: true,
-          hintText: hintText.toUpperCase(),
+          hintText: hintText.tr.toUpperCase(),
           hintStyle: GoogleFonts.quantico(
               fontSize: 12.sp,
               color: XColor.white,

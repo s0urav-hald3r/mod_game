@@ -56,7 +56,7 @@ class SearchView extends StatelessWidget {
                       decoration: InputDecoration(
                         // contentPadding: EdgeInsets.only(bottom: 5.h),
                         isCollapsed: true,
-                        hintText: 'type to search'.toUpperCase(),
+                        hintText: 'type to search'.tr.toUpperCase(),
                         hintStyle: GoogleFonts.quantico(
                             fontSize: 12.sp,
                             color: XColor.white,

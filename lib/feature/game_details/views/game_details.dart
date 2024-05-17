@@ -133,7 +133,7 @@ class GameDetailsView extends StatelessWidget {
                                   color: XColor.black.withOpacity(.2),
                                   child: Center(
                                     child: Text(
-                                      'Learn More'.toUpperCase(),
+                                      'Learn More'.tr.toUpperCase(),
                                       style: GoogleFonts.quantico(
                                           fontWeight: FontWeight.w700,
                                           fontSize: 12.sp,
@@ -183,7 +183,7 @@ class GameDetailsView extends StatelessWidget {
                                   color: XColor.deepYellow,
                                   child: Center(
                                     child: Text(
-                                      'Download'.toUpperCase(),
+                                      'Download'.tr.toUpperCase(),
                                       style: GoogleFonts.quantico(
                                           fontWeight: FontWeight.w700,
                                           fontSize: 12.sp,
@@ -207,7 +207,7 @@ class GameDetailsView extends StatelessWidget {
               Gap(XSize.spaceBtwSections.h),
 
               // Top recommended
-              const CategoryTitle(title: '👑 Top Recommended'),
+              CategoryTitle(title: '👑 Top Recommended'.tr),
               Gap(XSize.spaceBtwSections.h),
 
               // List of recommended mods

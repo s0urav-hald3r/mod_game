@@ -91,7 +91,7 @@ class TrendingCard extends StatelessWidget {
                           color: XColor.deepYellow,
                           child: Center(
                             child: Text(
-                              'Details'.toUpperCase(),
+                              'Details'.tr.toUpperCase(),
                               style: GoogleFonts.quantico(
                                   fontWeight: FontWeight.w700,
                                   fontSize: 10.sp,

@@ -31,7 +31,8 @@ class DownloadController extends GetxController {
         String filePath = file.path;
         String fileName =
             filePath.split('/').last.split('.').first.split('(').first.trim();
-        if (!downloadedMods.contains(fileName)) {
+        if (downloadedMods.indexWhere((element) => element.title == fileName) ==
+            -1) {
           downloadedModFiles.add(fileName);
         }
       }

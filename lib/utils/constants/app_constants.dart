@@ -3,7 +3,11 @@ class XAppConstant {
 
   // App constant
   static String appName = '';
-  static String supportMail = 'sourav.halder@stacklab.in';
+  static String supportMail = 'support@approtic.in';
+  static String privacyPolicyURL =
+      'https://sites.google.com/view/melonmodapp/home';
+  static String howToUseURL =
+      'https://sites.google.com/view/melonmodapp/how-to-use';
 
   // Dio client constant
   static String jwtToken = 'jwtToken';

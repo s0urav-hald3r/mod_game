@@ -5,8 +5,10 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mod_game/feature/drawer/views/language.dart';
 import 'package:mod_game/feature/drawer/views/report_bug.dart';
+import 'package:mod_game/utils/constants/app_constants.dart';
 import 'package:mod_game/utils/helper/extension.dart';
 import 'package:mod_game/utils/helper/navigation.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../utils/constants/colors.dart';
 import '../styles/space_with_appbar.dart';
@@ -36,7 +38,12 @@ class CustomDrawer extends StatelessWidget {
             ),
             Gap(65.h),
             const Divider(),
-            _menuItem('How to use', () {}),
+            _menuItem('How to use', () async {
+              Uri uri = Uri.parse(XAppConstant.howToUseURL);
+              if (!await launchUrl(uri)) {
+                throw Exception('Could not launch $uri');
+              }
+            }),
             const Divider(),
             _menuItem('language', () {
               Navigation.push(const LanguageView());
@@ -46,7 +53,12 @@ class CustomDrawer extends StatelessWidget {
               Navigation.push(const ReportBugView());
             }),
             const Divider(),
-            _menuItem('privacy policy', () {}),
+            _menuItem('privacy policy', () async {
+              Uri uri = Uri.parse(XAppConstant.privacyPolicyURL);
+              if (!await launchUrl(uri)) {
+                throw Exception('Could not launch $uri');
+              }
+            }),
             const Divider(),
             _menuItem('more apps', () {}),
             const Divider(),

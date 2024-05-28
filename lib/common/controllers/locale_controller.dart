@@ -41,7 +41,7 @@ class LocaleController extends Translations {
           'Learn More': 'लर्न मोरे',
           'type to search': 'टाइप तो सर्च',
           'How to use': 'हाउ तो उसे',
-          'language': 'लैंग्वेज',
+          'language': 'भाषा',
           'report bug': 'रिपोर्ट बग',
           'privacy policy': 'प्राइवेसी पालिसी',
           'more apps': 'मोरे अप्प्स',

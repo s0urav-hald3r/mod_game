@@ -1,7 +1,7 @@
 import 'dart:async';
+import 'dart:isolate';
 import 'dart:convert';
 import 'dart:io';
-import 'dart:isolate';
 import 'dart:ui';
 
 import 'package:dio/dio.dart';
@@ -25,7 +25,6 @@ class GameDetailsRepo extends GetxController {
   Timer? _debounceTimer;
 
   final Rx<Mod> mod = Mod().obs;
-
   final controller = DownloadController.instance;
 
   @override
@@ -46,31 +45,26 @@ class GameDetailsRepo extends GetxController {
 
     // Listen for data from the isolate
     receivePort.listen((dynamic data) {
-      if (data == 3) {
-        // Cancel the previous timer if it is still active
-        _debounceTimer?.cancel();
-
-        // Start a new timer
-        _debounceTimer = Timer(const Duration(seconds: 1), () {
-          updateDownloadCount(FormData.fromMap({'id': mod.value.id}));
-        });
-        return;
-      }
-
-      if (data == 4) {
-        XSnackBar.show('Failed', '${mod.value.title} downloaded failed.', 2);
-        return;
-      }
-
-      if (data == 5) {
-        XSnackBar.show(
-            'Canceled', '${mod.value.title} downloaded canceled.', 2);
-        return;
-      }
+      Logger.d('Data received from isolate: $data');
+      handleIsolateData(data);
     });
 
-    // Register the callback for FlutterDownloader
     FlutterDownloader.registerCallback(downloadCallback);
+  }
+
+  void handleIsolateData(dynamic data) {
+    if (data == 3) {
+      // Cancel the previous timer if it is still active
+      _debounceTimer?.cancel();
+      _debounceTimer = Timer(const Duration(seconds: 1), () {
+        Logger.d('Calling updateDownloadCount');
+        updateDownloadCount(FormData.fromMap({'id': mod.value.id}));
+      });
+    } else if (data == 4) {
+      XSnackBar.show('Failed', '${mod.value.title} download failed.', 2);
+    } else if (data == 5) {
+      XSnackBar.show('Canceled', '${mod.value.title} download canceled.', 2);
+    }
   }
 
   @override
@@ -78,6 +72,7 @@ class GameDetailsRepo extends GetxController {
     // Remove the port name mapping when disposing
     IsolateNameServer.removePortNameMapping('downloader_send_port');
     _debounceTimer?.cancel();
+    receivePort.close();
     super.dispose();
   }
 
@@ -86,6 +81,7 @@ class GameDetailsRepo extends GetxController {
     final SendPort? sendPort =
         IsolateNameServer.lookupPortByName('downloader_send_port');
     if (sendPort != null) {
+      Logger.d('Sending status to main isolate: $status');
       sendPort.send(status);
     }
   }
@@ -95,9 +91,9 @@ class GameDetailsRepo extends GetxController {
     Directory? dir;
     try {
       if (Platform.isIOS) {
-        dir = await getApplicationDocumentsDirectory(); // for iOS
+        dir = await getApplicationDocumentsDirectory();
       } else {
-        dir = await getExternalStorageDirectory(); // for Android
+        dir = await getExternalStorageDirectory();
       }
     } catch (err) {
       Logger.e(err);
@@ -117,13 +113,20 @@ class GameDetailsRepo extends GetxController {
   //  ---------------------------------* Function Start *------------------------------
 
   Future<void> updateDownloadCount(dynamic body) async {
-    Response response =
-        await _dioClient.post(XEndpoint.updateDownloadCount, body: body);
-    var jsondata = json.decode(response.data);
-    if (jsondata['success']) {
-      XSnackBar.show(
-          'Successful', '${mod.value.title} downloaded successfully.', 0);
-      controller.addNewDownloadedMod(mod.value);
+    try {
+      Logger.d('updateDownloadCount called with body: $body');
+      Response response =
+          await _dioClient.post(XEndpoint.updateDownloadCount, body: body);
+      var jsondata = json.decode(response.data);
+      if (jsondata['success']) {
+        XSnackBar.show(
+            'Successful', '${mod.value.title} downloaded successfully.', 0);
+        controller.addNewDownloadedMod(mod.value);
+      } else {
+        Logger.e('Failed to update download count: ${jsondata['message']}');
+      }
+    } catch (e) {
+      Logger.e('Error in updateDownloadCount: $e');
     }
   }
 
@@ -135,11 +138,9 @@ class GameDetailsRepo extends GetxController {
         url: mod.value.file!,
         savedDir: externalPath!.path,
         fileName: mod.value.title,
-        showNotification:
-            true, // show download progress in status bar (for Android)
-        openFileFromNotification:
-            true, // click on notification to open downloaded file (for Android)
-        saveInPublicStorage: true, // save the mod in the downloads directory
+        showNotification: true,
+        openFileFromNotification: true,
+        saveInPublicStorage: true,
       );
     }
   }

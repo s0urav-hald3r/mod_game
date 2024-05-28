@@ -78,7 +78,11 @@ class DownloadController extends GetxController {
   void filterDownloadedMods(List<Mod> mods) {
     for (var mod in mods) {
       if (downloadedModFiles.contains(mod.title)) {
-        downloadedMods.add(mod);
+        if (downloadedMods
+                .indexWhere((element) => element.title == mod.title) ==
+            -1) {
+          downloadedMods.add(mod);
+        }
       }
     }
   }
